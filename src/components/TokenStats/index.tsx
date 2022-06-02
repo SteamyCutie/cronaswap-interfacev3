@@ -22,11 +22,11 @@ interface TokenStatsProps {
   token: string
 }
 
-function TokenStatusInner({ token, price }) {
+const TokenStatusInner = ({ token, price }) => {
   const toggleModal = useTokenStatsModalToggle()
   return (
     <div
-      className="flex items-center px-2 py-2 text-sm rounded-lg bg-dark-900 hover:bg-dark-800 text-secondary"
+      className="flex items-center px-2 py-2 text-sm rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-gray-50 hover:opacity-80 shadow-md transition-all"
       onClick={toggleModal}
     >
       {token.icon && (
@@ -39,12 +39,12 @@ function TokenStatusInner({ token, price }) {
           className="rounded-md"
         />
       )}
-      <div className="px-1 text-primary">{formatNumberScale(price, true)}</div>
+      <div className="px-1">{formatNumberScale(price, true)}</div>
     </div>
   )
 }
 
-export default function TokenStats({ token, ...rest }: TokenStatsProps) {
+const TokenStats = ({ token, ...rest }: TokenStatsProps) => {
   const selectedToken = supportedTokens[token]
   const cronaPrice = useCronaUsdcPrice()
 
@@ -55,3 +55,5 @@ export default function TokenStats({ token, ...rest }: TokenStatsProps) {
     </>
   )
 }
+
+export default TokenStats

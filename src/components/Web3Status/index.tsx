@@ -29,12 +29,12 @@ const IconWrapper = styled.div<{ size?: number }>`
 `
 
 // we want the latest one to come first, so return negative if a is after b
-function newTransactionsFirst(a: TransactionDetails, b: TransactionDetails) {
+const newTransactionsFirst = (a: TransactionDetails, b: TransactionDetails) => {
   return b.addedTime - a.addedTime
 }
 
 // eslint-disable-next-line react/prop-types
-function StatusIcon({ connector }: { connector: AbstractConnector }) {
+const StatusIcon = ({ connector }: { connector: AbstractConnector }) => {
   if (connector === injected) {
     return (
       <IconWrapper size={16}>
@@ -71,7 +71,7 @@ function StatusIcon({ connector }: { connector: AbstractConnector }) {
   return null
 }
 
-function Web3StatusInner() {
+const Web3StatusInner = () => {
   const { i18n } = useLingui()
   const { account, connector } = useWeb3React()
 
@@ -104,7 +104,7 @@ function Web3StatusInner() {
     return (
       <div
         id="web3-status-connected"
-        className="flex items-center px-3 py-2 text-sm rounded-lg bg-dark-1000 text-secondary"
+        className="flex items-center px-3 py-2 text-sm rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-50 transition-all"
         onClick={toggleWalletModal}
       >
         {hasPendingTransactions ? (

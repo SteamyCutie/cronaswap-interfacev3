@@ -107,7 +107,7 @@ const Invest = () => {
           </div>
         </div>
 
-        <div className="mt-5 text-2xl font-bold text-high-emphesis">Staking Pools</div>
+        <div className="mt-80 text-2xl font-bold text-high-emphesis">Staking Pools</div>
         {/* <div className="w-full mt-6 space-y-4">
           <AutoPoolCard />
           <ManualPoolCard />

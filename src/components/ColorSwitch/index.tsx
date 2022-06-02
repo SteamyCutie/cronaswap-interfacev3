@@ -37,8 +37,8 @@ const ColorSwith = (): JSX.Element => {
 
   return (
     <div className="flex bg-light-bg dark:bg-dark-bg rounded-md transition-colors">
-      <div className="items-center justify-center cursor-pointer rounded-lg shadow-md px-3 h-9 bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-gray-100 flex transition-all" onClick={!isDark ? handleDarkTheme : handleLightTheme}>
-        <Image src={`/${!isDark ? 'sun' : 'moon'}.svg`} alt="sun" width={25} height={24} />
+      <div className="items-center justify-center cursor-pointer rounded-lg shadow-md px-3 py-1.5 bg-gray-50 dark:bg-gray-800 hover:opacity-80 text-gray-800 dark:text-gray-100 flex transition-all" onClick={!isDark ? handleDarkTheme : handleLightTheme}>
+        <Image src={`/${!isDark ? 'sun' : 'moon'}.svg`} alt="sun" width={28} height={27} />
       </div>
     </div>
   )

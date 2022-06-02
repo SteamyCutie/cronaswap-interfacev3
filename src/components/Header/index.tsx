@@ -20,11 +20,12 @@ import { useLingui } from '@lingui/react'
 import TokenStats from '../TokenStats'
 import { ExternalLink as LinkIcon } from 'react-feather'
 import Typography from '../Typography'
+import ColorSwith from '../ColorSwitch'
 
 // import { ExternalLink, NavLink } from "./Link";
 // import { ReactComponent as Burger } from "../assets/images/burger.svg";
 
-function AppBar(): JSX.Element {
+const AppBar = (): JSX.Element => {
   const { i18n } = useLingui()
   const { account, chainId, library } = useActiveWeb3React()
 
@@ -77,6 +78,7 @@ function AppBar(): JSX.Element {
 
                 <div className="fixed bottom-0 left-0 z-10 flex flex-row items-center justify-center w-full p-4 lg:w-auto bg-dark-1000 lg:relative lg:p-0 lg:bg-transparent">
                   <div className="flex items-center justify-between w-full space-x-2 sm:justify-end">
+                    <ColorSwith />
                     <div className="flex items-center w-auto mr-1 text-xs font-bold rounded shadow-sm cursor-pointer pointer-events-auto select-none bg-dark-800 text-primary hover:bg-dark-700 whitespace-nowrap sm:block">
                       <TokenStats token="CRONA" />
                     </div>

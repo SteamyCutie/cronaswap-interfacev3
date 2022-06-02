@@ -3,14 +3,13 @@ const plugin = require('tailwindcss/plugin')
 
 module.exports = {
   // important: '#__next',
-  // darkMode: true,
+  darkMode: 'class',
   mode: 'jit',
   // future: {
   //   purgeLayersByDefault: true,
   //   applyComplexClasses: true,
   // },
   purge: ['./src/**/*.{js,ts,jsx,tsx}'],
-  darkMode: false,
   theme: {
     extend: {
       linearBorderGradients: {
@@ -37,8 +36,13 @@ module.exports = {
         },
       },
       colors: {
+        blue: '#384aff',
+
+        'gray-800': '#0f172a',
+        'gray-100': '#eaf0f6',
+        'gray-50': '#f8fafc',
+
         purple: '#a755dd',
-        blue: '#2172e5', // 0993ec
         pink: '#f338c3',
         green: '#7cff6b',
         red: '#ff3838',

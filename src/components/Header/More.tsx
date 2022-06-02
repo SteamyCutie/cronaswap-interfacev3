@@ -119,26 +119,26 @@ export default function Menu() {
           >
             <Popover.Panel
               static
-              className={`absolute z-50 w-screen max-w-xs px-2 mt-3 transform -translate-x-full bottom-12 lg:top-12 left-full sm:px-0 ${isDesktop ? '' : 'overflow-y-scroll max-h-[480px]'
+              className={`absolute z-50 px-2 mt-3 transform -translate-x-full bottom-12 lg:top-12 left-full sm:px-0 ${isDesktop ? '' : 'overflow-y-scroll max-h-[480px]'
                 }`}
             >
-              <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
-                <div className="relative grid gap-6 px-5 py-6 bg-dark-900 sm:gap-8 sm:p-8">
+              <div className="overflow-hidden rounded-xl shadow-lg ring-1 ring-black ring-opacity-5">
+                <div className="relative grid gap-6 px-5 py-6 bg-gray-50/80 dark:bg-gray-800/90 sm:gap-8 sm:p-8">
                   {solutions.map((item) =>
                     item.external ? (
                       <ExternalLink
                         key={item.name}
                         href={item.href}
-                        className="block p-3 -m-3 transition duration-150 ease-in-out rounded-md hover:bg-dark-800"
+                        className="block p-3 -m-3 transition duration-150 ease-in-out rounded-md hover:bg-gray-800/10 dark:hover:bg-gray-50/5"
                       >
-                        <p className="text-base font-medium text-high-emphesis">{item.name}</p>
-                        <p className="mt-1 text-sm text-secondary">{item.description}</p>
+                        <p className="text-base font-extrabold text-gray-800 dark:text-gray-50">{item.name}</p>
+                        <p className="mt-1 text-sm text-gray-800/60 dark:text-gray-50/60">{item.description}</p>
                       </ExternalLink>
                     ) : (
                       <NavLink key={item.name} href={item.href}>
                         <a className="block p-3 -m-3 transition duration-150 ease-in-out rounded-md hover:bg-dark-800">
-                          <p className="text-base font-medium text-high-emphesis">{item.name}</p>
-                          <p className="mt-1 text-sm text-secondary">{item.description}</p>
+                          <p className="text-base font-extrabold text-gray-800 dark:text-gray-50">{item.name}</p>
+                          <p className="mt-1 text-sm text-gray-800/60 dark:text-gray-50/60">{item.description}</p>
                         </a>
                       </NavLink>
                     )

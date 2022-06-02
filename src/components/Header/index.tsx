@@ -34,7 +34,7 @@ const AppBar = (): JSX.Element => {
   const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? '']
 
   const routeTag: any = useRouter().asPath.split('/')[1].split('?')[0]
-  const navLinkStyle = "flex justify-start lg:justify-center items-center p-2 md:p-5 text-baseline hover:opacity-100 md:pt-5 md:pb-6 whitespace-nowrap md:border-t-4 transition-all"
+  const navLinkStyle = "flex justify-start lg:justify-center items-center p-2 md:p-5 text-base hover:opacity-100 md:pt-5 md:pb-6 whitespace-nowrap md:border-t-4 transition-all"
   const navDarkBorder = "opacity-100 text-blue dark:text-blue border-blue dark:border-blue"
   const navLightBorder = "opacity-80 border-blue/0 dark:border-blue/0"
 
@@ -46,7 +46,7 @@ const AppBar = (): JSX.Element => {
             <div className="px-4 py-0 transition-color">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
-                  <div className="fill-gray-800 dark:fill-white transition-color">
+                  <div className="fill-gray-800 dark:fill-white transition-color pr-4">
                     <svg width="180" height="34" viewBox="0 0 180 34" xmlns="http://www.w3.org/2000/svg">
                       <path
                         fillRule="evenodd"

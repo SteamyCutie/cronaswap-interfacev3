@@ -95,6 +95,10 @@ module.exports = {
             fontWeight: 700,
           },
         ],
+        lg: ['1rem'],
+        base: ['0.9rem'],
+        sm: ['0.8rem'],
+        xs: ['0.7rem'],
       },
       borderRadius: {
         none: '0',

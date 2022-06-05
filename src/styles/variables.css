@@ -1,6 +1,16 @@
 :root {
-    --primary: #0D0415;
-    --text-primary: #BFBFBF;
-    --font-sans: "Kumbh Sans", -apple-system, system-ui, BlinkMacSystemFont, 'Helvetica Neue', 'Helvetica', sans-serif;
-    --scrollbar-width: 14px;
+  --font-sans: "Kumbh Sans", -apple-system, system-ui, BlinkMacSystemFont, 'Helvetica Neue', 'Helvetica', sans-serif;
+  --scrollbar-width: 8px;
+}
+
+.max-w-10xl {
+  max-width: 110rem;
+}
+
+.max-w-9xl {
+  max-width: 100rem;
+}
+
+.max-w-8xl {
+  max-width: 90rem;
 }

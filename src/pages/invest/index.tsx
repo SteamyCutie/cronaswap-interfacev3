@@ -16,16 +16,21 @@ import { formatNumberScale } from 'app/functions'
 import Button from 'app/components/Button'
 // import IncentivePool from 'app/features/staking/IncentivePool/IncentivePool'
 import QuestionHelper from 'app/components/QuestionHelper'
+import SparkleIcon from 'app/components/SparkleIcon'
+import { CurrencyLogoArray } from 'app/components/CurrencyLogo'
+import { CRONA } from 'app/configs/tokens'
+import { useActiveWeb3React } from 'app/services/web3'
 
 const buttonStyle =
   'flex justify-center items-center w-full h-14 rounded font-bold md:font-medium md:text-lg mt-5 text-sm focus:outline-none focus:ring'
 
 const Invest = () => {
   const { i18n } = useLingui()
+
+  const { account, chainId } = useActiveWeb3React()
+
   const addTransaction = useTransactionAdder()
-
   const cronavaultContract = useCronaVaultContract()
-
   const autocronaBountyValue = useRef(0)
 
   const getCronaVault = async () => {
@@ -52,14 +57,14 @@ const Invest = () => {
   }
 
   return (
-    <Container id="bar-page" className="py-4 md:py-8 lg:py-12" maxWidth="7xl">
+    <Container id="bar-page" className="py-4 md:py-8 lg:py-12 transition-all" maxWidth="9xl">
       <Head>
         <title key="title">Stake | CronaSwap</title>
         <meta key="description" name="description" content="Stake CronaSwap" />
       </Head>
-      <div className="w-11/12 m-auto">
+      <div className="grid m-auto gap-6 transition-all">
         {/* Hero */}
-        <div className="flex-row items-center justify-between w-full px-8 py-6 space-y-2 rounded md:flex bg-cyan-blue bg-opacity-20">
+        {/* <div className="flex-row items-center justify-between w-full px-8 py-6 space-y-2 rounded md:flex bg-cyan-blue bg-opacity-20">
           <div className="w-8/12 mb-5 space-y-2 gap-y-10 md:mb-0">
             <Typography variant="h2" className="mb-2 text-high-emphesis" weight={700}>
               {i18n._(t`Crona Stake`)}
@@ -105,9 +110,35 @@ const Invest = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
-        <div className="mt-80 text-2xl font-bold text-high-emphesis">Staking Pools</div>
+        <div className="mt-5 text-2xl font-bold text-gray-800 dark:text-gray-50 transition-all">Featured Pools</div>
+        <div className="grid gap-4 grid-cols-4">
+          <div className="grid bg-white dark:bg-gray-850 text-gray-800 dark:text-gray-50 px-8 py-6 gap-2 rounded-2xl shadow border border-gray-100 dark:border-gray-800 transition-all">
+            <div className="text-base font-semibold dark:font-normal opacity-80 dark:opacity-50">{`A Late Quartet`}</div>
+            <CurrencyLogoArray currencies={[CRONA[chainId], CRONA[chainId]]} size={40} />
+            <div className='flex items-center text-xl font-extrabold uppercase'>{`11.89`}% APR <SparkleIcon /> </div>
+            <div className='flex items-center text-base uppercase font-semibold dark:font-normal opacity-80 dark:opacity-50'>{`0.03`}% Daily</div>
+          </div>
+          <div className="grid bg-white dark:bg-gray-850 text-gray-800 dark:text-gray-50 px-8 py-6 gap-2 rounded-2xl shadow border border-gray-100 dark:border-gray-800 transition-all">
+            <div className="text-base font-semibold dark:font-normal opacity-80 dark:opacity-50">{`CRE8R in F-Major`}</div>
+            <CurrencyLogoArray currencies={[CRONA[chainId], CRONA[chainId]]} size={40} />
+            <div className='flex items-center text-xl font-extrabold uppercase'>{`117.47`}% APR <SparkleIcon /> </div>
+            <div className='flex items-center text-base uppercase font-semibold dark:font-normal opacity-80 dark:opacity-50'>{`0.31`}% Daily</div>
+          </div>
+          <div className="grid bg-white dark:bg-gray-850 text-gray-800 dark:text-gray-50 px-8 py-6 gap-2 rounded-2xl shadow border border-gray-100 dark:border-gray-800 transition-all">
+            <div className="text-base font-semibold dark:font-normal opacity-80 dark:opacity-50">{`Mor Steady Beets, Yearn Boosted`}</div>
+            <CurrencyLogoArray currencies={[CRONA[chainId], CRONA[chainId]]} size={40} />
+            <div className='flex items-center text-xl font-extrabold uppercase'>{`10.76`}% APR <SparkleIcon /> </div>
+            <div className='flex items-center text-base uppercase font-semibold dark:font-normal opacity-80 dark:opacity-50'>{`0.03`}% Daily</div>
+          </div>
+          <div className="grid bg-white dark:bg-gray-850 text-gray-800 dark:text-gray-50 px-8 py-6 gap-2 rounded-2xl shadow border border-gray-100 dark:border-gray-800 transition-all">
+            <div className="text-base font-semibold dark:font-normal opacity-80 dark:opacity-50">{`The Stader Stacked Symphony`}</div>
+            <CurrencyLogoArray currencies={[CRONA[chainId], CRONA[chainId]]} size={40} />
+            <div className='flex items-center text-xl font-extrabold uppercase'>{`37.12`}% APR <SparkleIcon /> </div>
+            <div className='flex items-center text-base uppercase font-semibold dark:font-normal opacity-80 dark:opacity-50'>{`0.10`}% Daily</div>
+          </div>
+        </div>
         {/* <div className="w-full mt-6 space-y-4">
           <AutoPoolCard />
           <ManualPoolCard />

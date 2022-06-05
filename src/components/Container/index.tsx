@@ -1,10 +1,13 @@
 import { classNames } from 'app/functions'
 import { ReactNode } from 'react'
 
-export type MaxWidth = 'full' | '7xl' | '6xl' | '5xl' | '4xl' | '3xl' | '2xl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs'
+export type MaxWidth = 'full' | '10xl' | '9xl' | '8xl' | '7xl' | '6xl' | '5xl' | '4xl' | '3xl' | '2xl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs'
 
 const TailwindMapper: Record<MaxWidth, string> = {
   full: 'max-w-full',
+  '10xl': 'max-w-10xl',
+  '9xl': 'max-w-9xl',
+  '8xl': 'max-w-8xl',
   '7xl': 'max-w-7xl',
   '6xl': 'max-w-6xl',
   '5xl': 'max-w-5xl',

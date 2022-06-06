@@ -68,17 +68,17 @@ const Invest = () => {
   const poolGroupPassive = 'text-gray-800 dark:text-gray-50'
 
   return (
-    <Container id="bar-page" className="px-4 md:px-8 lg:px-12 py-4 md:py-8 lg:py-12 transition-all" maxWidth="9xl">
+    <Container id="bar-page" className="px-4 py-4 transition-all md:px-8 lg:px-12 md:py-8 lg:py-12" maxWidth="9xl">
       <Head>
-        <title key="title">Stake | CronaSwap</title>
-        <meta key="description" name="description" content="Stake CronaSwap" />
+        <title key="title">Invest | CronaSwap</title>
+        <meta key="description" name="description" content="Invest CronaSwap" />
       </Head>
-      <div className="grid m-auto gap-3 md:gap-5 lg:gap-6 transition-all">
+      <div className="grid gap-3 m-auto transition-all md:gap-5 lg:gap-6">
         {/* Hero */}
         {/* <div className="flex-row items-center justify-between w-full px-8 py-6 space-y-2 rounded md:flex bg-cyan-blue bg-opacity-20">
           <div className="w-8/12 mb-5 space-y-2 gap-y-10 md:mb-0">
             <Typography variant="h2" className="mb-2 text-high-emphesis" weight={700}>
-              {i18n._(t`Crona Stake`)}
+              {i18n._(t`Crona Invest`)}
             </Typography>
             <Typography variant="sm" weight={400}>
               {i18n._(t`Looking for a less resource-intensive alternative to mining?`)}
@@ -123,9 +123,9 @@ const Invest = () => {
           </div>
         </div> */}
 
-        <div className="mt-4 text-lg md:text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-50 transition-all">Featured Pools</div>
-        <div className="grid gap-2 md:gap-3 lg:gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-          <div className="grid gap-2 md:gap-3 lg:gap-4 grid-cols-2 md:grid-cols-2 col-span-1 md:col-span-2">
+        <div className="mt-4 text-lg font-bold text-gray-800 transition-all md:text-xl lg:text-2xl dark:text-gray-50">Featured Pools</div>
+        <div className="grid grid-cols-1 gap-2 md:gap-3 lg:gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-2 col-span-1 gap-2 md:gap-3 lg:gap-4 md:grid-cols-2 md:col-span-2">
             <div className={statusCardStyle}>
               <div className={statusCardHeading}>{`A Late Quartet`}</div>
               <CurrencyLogoArray currencies={[CRONA[chainId], CRONA[chainId]]} size={40} />
@@ -158,8 +158,8 @@ const Invest = () => {
         </div> */}
 
         <div>
-          <div className="mt-4 text-lg md:text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-50 transition-all">Investment Pools</div>
-          <div className="flex mt-2 md:mt-4 justify-between md:justify-start space-x-2 md:space-x-4 lg:space-x-8 items-center text-sm md:text-sm lg:text-lg font-semibold dark:font-normal">
+          <div className="mt-4 text-lg font-bold text-gray-800 transition-all md:text-xl lg:text-2xl dark:text-gray-50">Investment Pools</div>
+          <div className="flex items-center justify-between mt-2 space-x-2 text-sm font-semibold md:mt-4 md:justify-start md:space-x-4 lg:space-x-8 md:text-sm lg:text-lg dark:font-normal">
             <div onClick={() => setPoolGroup(0)} className={classNames(poolGroupStyle, poolGroup === 0 ? poolGroupActive : poolGroupPassive)}>Incentivized Pools</div>
             <div onClick={() => setPoolGroup(1)} className={classNames(poolGroupStyle, poolGroup === 1 ? poolGroupActive : poolGroupPassive)}>Community Pools</div>
             <div onClick={() => setPoolGroup(2)} className={classNames(poolGroupStyle, poolGroup === 2 ? poolGroupActive : poolGroupPassive)}>My Investments</div>

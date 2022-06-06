@@ -4,19 +4,19 @@ import { ChainId, CurrencyAmount, JSBI, MASTERCHEF_ADDRESS } from '@cronaswap/co
 import { useActiveWeb3React } from '../../services/web3'
 import { Contract } from '@ethersproject/contracts'
 import { Zero } from '@ethersproject/constants'
-import { NEVER_RELOAD, useSingleCallResult, useSingleContractMultipleData } from '../../states/multicall/hooks'
+import { NEVER_RELOAD, useSingleCallResult, useSingleContractMultipleData } from 'app/states/multicall/hooks'
 import {
   useDashboardV1Contract,
   useDashboardV2Contract,
   useMasterChefContract,
   useMasterChefV2Contract,
-} from '../../hooks/useContract'
+} from 'app/hooks/useContract'
 
 import zip from 'lodash/zip'
 import concat from 'lodash/concat'
 import { Chef } from './enum'
-import { CRONA } from '../../configs/tokens'
-import { useToken } from '../../hooks/Tokens'
+import { CRONA } from 'app/configs/tokens'
+import { useToken } from 'app/hooks/Tokens'
 import { BigNumber } from '@ethersproject/bignumber'
 
 export function useChefContract(chef: Chef) {

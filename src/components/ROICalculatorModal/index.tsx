@@ -1,18 +1,15 @@
-import { formatNumberScale } from '../../functions'
 import React, { useState } from 'react'
 import { SwitchVerticalIcon, ArrowDownIcon, ArrowUpIcon } from '@heroicons/react/solid'
 import { ExternalLink as LinkIcon } from 'react-feather'
-import ExternalLink from '../../components/ExternalLink'
+import ExternalLink from 'app/components/ExternalLink'
 import { useLingui } from '@lingui/react'
 import { t } from '@lingui/macro'
-
-import QuestionHelper from 'app/components/QuestionHelper'
 import Modal from 'app/components/Modal/index'
 import ModalHeader from 'app/components/ModalHeader/index'
 import Typography from 'app/components/Typography'
 import Input from 'app/components/Input'
 import Checkbox from 'app/components/Checkbox'
-import { getCronaPrice, aprToApy } from 'features/staking/useStaking'
+import { getCronaPrice, aprToApy } from 'features/stake/useStake'
 
 interface RoiCalculatorModalProps {
   isfarm: boolean

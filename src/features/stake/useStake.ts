@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useDashboardV1Contract, useCronaVaultContract } from 'hooks/useContract'
 import { getBalanceAmount, getBalanceNumber, getDecimalAmount, getFullDisplayBalance } from 'functions/formatBalance'
-import { useCronaUsdcPrice } from '../farms/hooks'
+import { useCronaUsdcPrice } from '../invest/hooks'
 import BigNumber from 'bignumber.js'
 import { formatBalance } from 'app/functions'
 

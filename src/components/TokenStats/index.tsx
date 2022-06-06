@@ -4,7 +4,7 @@ import { formatBalance, formatNumber, formatNumberScale } from '../../functions/
 import { useTokenStatsModalToggle } from '../../states/application/hooks'
 import TokenStatsModal from '../../modals/TokenStatsModal'
 import { ChainId } from '@cronaswap/core-sdk'
-import { useCronaUsdcPrice } from '../../features/farms/hooks'
+import { useCronaUsdcPrice } from 'app/features/invest/hooks'
 
 const supportedTokens = {
   CRONA: {
@@ -26,7 +26,7 @@ const TokenStatusInner = ({ token, price }) => {
   const toggleModal = useTokenStatsModalToggle()
   return (
     <div
-      className="flex items-center px-2 py-2 text-sm rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-gray-50 hover:opacity-80 shadow-md transition-all"
+      className="flex items-center px-2 py-2 text-sm text-gray-800 transition-all rounded-lg shadow-md bg-gray-50 dark:bg-gray-800 dark:text-gray-50 hover:opacity-80"
       onClick={toggleModal}
     >
       {token.icon && (

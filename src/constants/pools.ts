@@ -197,7 +197,7 @@ export const POOLS: AddressMap = {
     },
 
     '0xCae8Ac27c13660F434765f28A471db39EC5c6A67': {
-      pid: 7,
+      pid: 8,
       name: 'CRONA-CROSS',
       tokenPerBlock: '0.0575',
       isFinished: true,

@@ -27,6 +27,9 @@ module.exports = {
           'dark-900': '#161522',
           'dark-800': '#202231',
           'dark-pink-red': '#4e3034',
+          'gray-850': '#162031',
+          'gray-100': '#eaf0f6',
+          white: '#fff',
         },
         border: {
           1: '1px',

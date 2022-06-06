@@ -54,13 +54,13 @@ export default function IncentivePool(): JSX.Element {
   const [activeFilter, setActiveFilter] = useState(0)
   const [sortOption, setSortOption] = useState('Hot')
 
-  const filterStyle = 'flex items-center justify-center px-4 py-2 rounded border font-bold dark:font-normal border-gray-100 dark:border-gray-800 text-base shadow-md opacity-80 hover:opacity-100 cursor-pointer transition-all'
+  const filterStyle = 'flex items-center text-xs md:text-sm lg:text-base justify-center px-4 py-2 rounded border font-bold dark:font-normal border-gray-100 dark:border-gray-800 shadow-md opacity-80 hover:opacity-100 cursor-pointer transition-all'
 
   return (
     <div className="w-full mt-4 col-span-4 space-y-6 lg:col-span-3">
       {/* search bar */}
-      <div className="flex-row justify-between md:flex">
-        <div className='flex items-center justify-center gap-2'>
+      <div className="grid lg:justify-between gap-2 lg:flex">
+        <div className='grid grid-cols-2 md:grid-cols-4 items-center justify-between lg:justify-center gap-2'>
           <div onClick={() => setActiveFilter(0)} className={classNames(filterStyle, activeFilter === 0 ? 'bg-blue text-gray-50 dark:bg-blue dark:text-gray-50' : 'bg-gray-100 dark:bg-gray-850 text-gray-850 dark:text-gray-50')}>Index Fund Pools</div>
           <div onClick={() => setActiveFilter(1)} className={classNames(filterStyle, activeFilter === 1 ? 'bg-blue text-gray-50 dark:bg-blue dark:text-gray-50' : 'bg-gray-100 dark:bg-gray-850 text-gray-850 dark:text-gray-50')}>Stablecoin Pools</div>
           <div onClick={() => setActiveFilter(2)} className={classNames(filterStyle, activeFilter === 2 ? 'bg-blue text-gray-50 dark:bg-blue dark:text-gray-50' : 'bg-gray-100 dark:bg-gray-850 text-gray-850 dark:text-gray-50')}>CRONA Pools</div>
@@ -89,7 +89,7 @@ export default function IncentivePool(): JSX.Element {
               </div>
             </div> */}
 
-        <div className="flex gap-2 md:w-5/12">
+        <div className="flex gap-2 lg:w-3/12">
           {/* sort select menu*/}
           {/* <div className="w-1/3 h-14">
             <div className="relative inline-block w-full h-full group">
@@ -156,7 +156,7 @@ export default function IncentivePool(): JSX.Element {
             term={term}
             inputProps={{
               className:
-                'relative w-full bg-transparent border border-transparent focus:border-gradient-r-blue-red-dark-900 rounded placeholder-secondary focus:placeholder-primary font-bold text-base px-6 py-3.5',
+                'relative w-full bg-transparent border border-transparent dark:border-transparent focus:border-gradient-r-blue-red-white dark:focus:border-gradient-r-blue-red-gray-850 rounded placeholder-secondary focus:placeholder-primary font-bold dark:font-normal text-base text-gray-800 dark:text-gray-100 px-4 py-2.5 transition-all',
             }}
           />
         </div>

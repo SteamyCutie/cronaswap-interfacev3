@@ -14,7 +14,7 @@ import { getCronaPrice } from 'features/staking/useStaking'
 import Typography from 'app/components/Typography'
 import { classNames, formatNumberScale } from 'app/functions'
 import Button from 'app/components/Button'
-// import IncentivePool from 'app/features/staking/IncentivePool/IncentivePool'
+import IncentivePool from 'app/features/staking/IncentivePool'
 import QuestionHelper from 'app/components/QuestionHelper'
 import SparkleIcon from 'app/components/SparkleIcon'
 import { CurrencyLogoArray } from 'app/components/CurrencyLogo'
@@ -56,11 +56,11 @@ const Invest = () => {
     }
   }
 
-  const [poolTab, setPoolTab] = useState(0)
+  const [poolGroup, setPoolGroup] = useState(0)
 
-  const poolTabStyle = 'cursor-pointer opacity-80 dark:opacity-50 hover:opacity-100 dark:hover:opacity-100 px-2 py-1 transition-all border-b-2 border-blue/0'
-  const poolTabActive = 'text-blue dark:font-semibold border-blue/100 opacity-100 dark:opacity-100'
-  const poolTabPassive = 'text-gray-800 dark:text-gray-50'
+  const poolGroupStyle = 'cursor-pointer opacity-80 dark:opacity-50 hover:opacity-100 dark:hover:opacity-100 px-2 py-1 transition-all border-b-2 border-blue/0'
+  const poolGroupActive = 'text-blue dark:font-semibold border-blue/100 opacity-100 dark:opacity-100'
+  const poolGroupPassive = 'text-gray-800 dark:text-gray-50'
 
   return (
     <Container id="bar-page" className="py-4 md:py-8 lg:py-12 transition-all" maxWidth="9xl">
@@ -150,17 +150,15 @@ const Invest = () => {
           <ManualPoolCard />
         </div> */}
 
-        <div className="mt-5 text-2xl font-bold text-gray-800 dark:text-gray-50 transition-all">Investment Pools</div>
-        <div className="flex space-x-8 items-center text-lg font-semibold dark:font-normal">
-          <div onClick={() => setPoolTab(0)} className={classNames(poolTabStyle, poolTab === 0 ? poolTabActive : poolTabPassive)}>Incentivized Pools</div>
-          <div onClick={() => setPoolTab(1)} className={classNames(poolTabStyle, poolTab === 1 ? poolTabActive : poolTabPassive)}>Community Pools</div>
-          <div onClick={() => setPoolTab(2)} className={classNames(poolTabStyle, poolTab === 2 ? poolTabActive : poolTabPassive)}>My Investments</div>
-        </div>
-
-        {/* <div className="w-full mt-6 md:flex">
-          <div>Incentive pool</div>
+        <div>
+          <div className="mt-4 text-2xl font-bold text-gray-800 dark:text-gray-50 transition-all">Investment Pools</div>
+          <div className="flex mt-4 space-x-8 items-center text-lg font-semibold dark:font-normal">
+            <div onClick={() => setPoolGroup(0)} className={classNames(poolGroupStyle, poolGroup === 0 ? poolGroupActive : poolGroupPassive)}>Incentivized Pools</div>
+            <div onClick={() => setPoolGroup(1)} className={classNames(poolGroupStyle, poolGroup === 1 ? poolGroupActive : poolGroupPassive)}>Community Pools</div>
+            <div onClick={() => setPoolGroup(2)} className={classNames(poolGroupStyle, poolGroup === 2 ? poolGroupActive : poolGroupPassive)}>My Investments</div>
+          </div>
           <IncentivePool />
-        </div> */}
+        </div>
       </div>
     </Container>
   )

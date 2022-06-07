@@ -9,7 +9,7 @@ import ModalHeader from 'app/components/ModalHeader/index'
 import Typography from 'app/components/Typography'
 import Input from 'app/components/Input'
 import Checkbox from 'app/components/Checkbox'
-import { getCronaPrice, aprToApy } from 'features/stake/useStake'
+import { getCronaPrice, aprToApy } from 'app/features/invest/useStake'
 
 interface RoiCalculatorModalProps {
   isfarm: boolean

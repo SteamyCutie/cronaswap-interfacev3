@@ -53,7 +53,7 @@ const InvestList = () => {
   const filterStyle = 'flex items-center text-xs md:text-sm lg:text-base justify-center px-4 py-2 rounded border font-bold dark:font-normal border-gray-100 dark:border-gray-800 shadow-md opacity-80 hover:opacity-100 cursor-pointer transition-all'
 
   return (
-    <div className="w-full col-span-4 mt-4 space-y-6 lg:col-span-3">
+    <div className="w-full col-span-4 mt-4 space-y-3 lg:col-span-3">
       {/* search bar */}
       <div className="grid gap-2 lg:justify-between lg:flex">
         <div className='grid items-center justify-between grid-cols-2 gap-2 md:grid-cols-4 lg:justify-center'>
@@ -74,22 +74,24 @@ const InvestList = () => {
           />
         </div>
       </div>
-      {items && items.length > 0 ? (
-        <InfiniteScroll
-          dataLength={numDisplayed}
-          next={() => setNumDisplayed(numDisplayed + 5)}
-          hasMore={true}
-          loader={null}
-        >
-          <div className="space-y-2">
+      <div className="flex-row transition-all rounded shadow-md">
+        {items && items.length > 0 ? (
+          <InfiniteScroll
+            dataLength={numDisplayed}
+            next={() => setNumDisplayed(numDisplayed + 5)}
+            hasMore={true}
+            loader={null}
+          >
+            <div className='w-full px-4 py-6 text-sm text-left text-gray-800 transition-all bg-white border border-gray-100 rounded rounded-b-none cursor-pointer select-none dark:border-gray-800 dark:bg-gray-850 dark:text-primary md:text-lg'>
+            </div>
             {items.slice(0, numDisplayed).map((farm, index) => (
-              <FarmListItem key={index} farm={farm} />
+              <FarmListItem key={index} farm={farm} index={index === numDisplayed - 1 || index === items.length - 1} />
             ))}
-          </div>
-        </InfiniteScroll>
-      ) : (
-        <div className="w-full py-6 text-center">{term ? <span>No Results.</span> : <Dots>Loading</Dots>}</div>
-      )}
+          </InfiniteScroll>
+        ) : (
+          <div className="w-full py-6 text-center text-gray-800 transition-all dark:text-gray-50">{term ? <span>No Results.</span> : <Dots>Loading</Dots>}</div>
+        )}
+      </div>
     </div>
   )
 }

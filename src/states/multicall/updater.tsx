@@ -26,7 +26,7 @@ async function fetchChunk(
   chunk: Call[],
   blockNumber: number
 ): Promise<{ success: boolean; returnData: string }[]> {
-  console.debug('Fetching chunk', chunk, blockNumber)
+  // console.debug('Fetching chunk', chunk, blockNumber)
   try {
     const { returnData } = await multicall.callStatic.tryBlockAndAggregate(
       false,
@@ -42,8 +42,7 @@ async function fetchChunk(
           gasUsed.gte(Math.floor((chunk[i].gasRequired ?? DEFAULT_GAS_REQUIRED) * 0.95))
         ) {
           console.warn(
-            `A call failed due to requiring ${gasUsed.toString()} vs. allowed ${
-              chunk[i].gasRequired ?? DEFAULT_GAS_REQUIRED
+            `A call failed due to requiring ${gasUsed.toString()} vs. allowed ${chunk[i].gasRequired ?? DEFAULT_GAS_REQUIRED
             }`,
             chunk[i]
           )

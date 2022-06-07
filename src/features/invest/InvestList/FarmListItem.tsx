@@ -16,7 +16,7 @@ import { Token } from '@cronaswap/core-sdk'
 import { getAddress } from '@ethersproject/address'
 import { useTokenBalance } from 'app/states/wallet/hooks'
 
-const FarmListItem = ({ farm, ...rest }) => {
+const FarmListItem = ({ farm, index, ...rest }) => {
   const { i18n } = useLingui()
   const { account, chainId } = useActiveWeb3React()
 
@@ -47,8 +47,8 @@ const FarmListItem = ({ farm, ...rest }) => {
         <div>
           <Disclosure.Button
             className={classNames(
-              open && 'rounded-b-none',
-              'w-full px-4 py-6 text-left rounded cursor-pointer select-none bg-dark-900 text-primary text-sm md:text-lg'
+              index ? 'rounded-b' : '',
+              'w-full px-4 py-6 text-left cursor-pointer select-none bg-white dark:bg-gray-850 text-gray-800 dark:text-primary text-sm md:text-lg border border-gray-100 dark:border-gray-800 transition-all'
             )}
           >
             <div className="flex gap-x-2">

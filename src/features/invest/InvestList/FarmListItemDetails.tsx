@@ -69,12 +69,12 @@ const FarmListItemDetails = ({ farm }) => {
       leaveFrom="opacity-100"
       leaveTo="opacity-0"
     >
-      <Disclosure.Panel className="flex flex-col w-full border-t-0 rounded rounded-t-none bg-dark-800" static>
+      <Disclosure.Panel className="flex flex-col mx-px transition-all border-t-0 border-white dark:border-gray-800 bg-gray-50 dark:bg-gray-850" static>
         {/* <div className="grid grid-cols-2 gap-4 p-4"> */}
         <div className="grid grid-cols-1 gap-4 p-4 sm:grid-cols-3">
           <div className="col-span-2 text-center md:col-span-1">
             {account && (
-              <div className="pr-4 mb-2 text-left cursor-pointer text-secondary">
+              <div className="pr-4 mb-2 text-sm font-bold text-left text-gray-800 transition-all cursor-pointer opacity-80 dark:text-gray-50 dark:font-normal">
                 {i18n._(t`Wallet Balance`)}: {formatNumberScale(balance?.toSignificant(6, undefined, 4) ?? 0, false, 4)}
                 {farm.lpPrice && balance
                   ? ` (` + formatNumberScale(farm.lpPrice * Number(balance?.toFixed(18) ?? 0), true) + `)`
@@ -83,7 +83,7 @@ const FarmListItemDetails = ({ farm }) => {
             )}
             <div className="relative flex items-center w-full mb-4">
               <NumericalInput
-                className="w-full px-4 py-4 pr-20 rounded bg-dark-700 focus:ring focus:ring-dark-purple"
+                className="w-full px-4 py-4 pr-20 text-gray-800 transition-all bg-white rounded shadow dark:bg-gray-800 focus:ring focus:ring-dark-purple dark:text-gray-100"
                 value={depositValue}
                 onUserInput={setDepositValue}
               />
@@ -139,7 +139,7 @@ const FarmListItemDetails = ({ farm }) => {
           </div>
           <div className="col-span-2 text-center md:col-span-1">
             {account && (
-              <div className="pr-4 mb-2 text-left cursor-pointer text-secondary">
+              <div className="pr-4 mb-2 text-sm font-bold text-left text-gray-800 transition-all cursor-pointer opacity-80 dark:text-gray-50 dark:font-normal">
                 {i18n._(t`Your Staked`)}: {formatNumberScale(amount?.toSignificant(6, undefined, 4) ?? 0, false, 4)}
                 {farm.lpPrice && amount
                   ? ` (` + formatNumberScale(farm.lpPrice * Number(amount?.toSignificant(18) ?? 0), true) + `)`
@@ -148,7 +148,7 @@ const FarmListItemDetails = ({ farm }) => {
             )}
             <div className="relative flex items-center w-full mb-4">
               <NumericalInput
-                className="w-full px-4 py-4 pr-20 rounded bg-dark-700 focus:ring focus:ring-light-purple"
+                className="w-full px-4 py-4 pr-20 text-gray-800 transition-all bg-white rounded shadow dark:bg-gray-800 focus:ring focus:ring-dark-purple dark:text-gray-100"
                 value={withdrawValue}
                 onUserInput={setWithdrawValue}
               />
@@ -192,10 +192,10 @@ const FarmListItemDetails = ({ farm }) => {
           </div>
           <div className="col-span-2 md:col-span-1">
             <div className="flex justify-between">
-              <div className="mb-2 text-xs md:text-base text-secondary">CRONA Earned</div>
+              <div className="pr-4 mb-2 text-sm font-bold text-left text-gray-800 transition-all cursor-pointer opacity-80 dark:text-gray-50 dark:font-normal">CRONA Earned</div>
               {farm.chef == '1' ? (
                 <NavLink key={`farm-${farm?.pid}`} href="/boost">
-                  <a className="flex items-center mb-2 text-xs md:text-base text-red">
+                  <a className="flex items-center mb-2 text-xs font-bold md:text-base text-red">
                     <FireIcon className="h-4" />
                     Boost Reward
                   </a>
@@ -204,11 +204,11 @@ const FarmListItemDetails = ({ farm }) => {
                 <></>
               )}
             </div>
-            <div className="flex flex-col justify-between gap-4 text-sm rounded-lg bg-dark-700">
+            <div className="flex flex-col justify-between gap-4 text-sm transition-all bg-white border-gray-100 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-850">
               <div className="flex mt-4">
-                <div className="flex flex-col w-2/3 px-4 align-middle">
+                <div className="flex flex-col w-2/3 px-4 font-bold text-gray-800 align-middle transition-all dark:text-gray-50 dark:font-normal">
                   <div className="text-2xl font-bold"> {formatNumber(pendingCrona?.toFixed(18))}</div>
-                  <div className="text-sm">~{Number(formatNumber(pendingCrona?.toFixed(18))) * farm.tokenPrice}</div>
+                  <div className="text-sm font-bold transition-all dark:font-normal">~ {Number(formatNumber(pendingCrona?.toFixed(18))) * farm.tokenPrice}</div>
                 </div>
                 <div className="flex flex-col w-1/2 px-4 align-middle lg:w-1/3 gap-y-1">
                   <Button

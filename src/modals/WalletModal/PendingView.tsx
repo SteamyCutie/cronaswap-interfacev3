@@ -1,28 +1,26 @@
-import { SUPPORTED_WALLETS, injected } from '../../configs/wallets'
+import { SUPPORTED_WALLETS, injected } from 'app/configs/wallets'
 
 import { AbstractConnector } from '@web3-react/abstract-connector'
-import Dots from '../../components/Dots'
+import Dots from 'app/components/Dots'
 import Option from './Option'
 import React from 'react'
 
 export default function PendingView({
-  id,
   connector,
   error = false,
   setPendingError,
   tryActivation,
 }: {
-  id: string
   connector?: AbstractConnector
   error?: boolean
   setPendingError: (error: boolean) => void
-  tryActivation: (connector: AbstractConnector, id: string) => void
+  tryActivation: (connector: AbstractConnector) => void
 }) {
   const isMetamask = window?.ethereum?.isMetaMask
 
   return (
     <div>
-      <div className="p-4 mb-5">
+      <div className="flex justify-center p-2 mb-5">
         <div>
           {error ? (
             <div>
@@ -31,7 +29,7 @@ export default function PendingView({
                 className="p-2 ml-4 text-xs font-semibold select-none hover:cursor-pointer"
                 onClick={() => {
                   setPendingError(false)
-                  connector && tryActivation(connector, id)
+                  connector && tryActivation(connector)
                 }}
               >
                 Try Again
@@ -42,9 +40,9 @@ export default function PendingView({
           )}
         </div>
       </div>
-      {Object.keys(SUPPORTED_WALLETS).map((_key) => {
-        const option = SUPPORTED_WALLETS[_key]
-        if (id === _key) {
+      {Object.keys(SUPPORTED_WALLETS).map((key) => {
+        const option = SUPPORTED_WALLETS[key]
+        if (option.connector === connector) {
           if (option.connector === injected) {
             if (isMetamask && option.name !== 'MetaMask') {
               return null
@@ -55,8 +53,8 @@ export default function PendingView({
           }
           return (
             <Option
-              id={`connect-${_key}`}
-              key={_key}
+              id={`connect-${key}`}
+              key={key}
               clickable={false}
               color={option.color}
               header={option.name}

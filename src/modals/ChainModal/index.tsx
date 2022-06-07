@@ -1,14 +1,14 @@
-import { BridgeContextName } from '../../constants'
+import { BridgeContextName } from 'app/constants'
 import { ChainId } from '@cronaswap/core-sdk'
 import { ExternalLinkIcon } from '@heroicons/react/solid'
 import Image from 'next/image'
-import Modal from '../../components/Modal'
-import ModalHeader from '../../components/ModalHeader'
+import Modal from 'app/components/Modal'
+import ModalHeader from 'app/components/ModalHeader'
 import React from 'react'
 import cookie from 'cookie-cutter'
 import { useWeb3React } from '@web3-react/core'
-import { NETWORK_ICON, NETWORK_LABEL } from '../../configs/networks'
-import { Chain } from '../../entities/Chain'
+import { NETWORK_ICON, NETWORK_LABEL } from 'app/configs/networks'
+import { Chain } from 'app/entities/Chain'
 import { bridgeInjected } from 'app/configs/wallets'
 
 export const SUPPORTED_NETWORKS: {
@@ -87,7 +87,7 @@ export default function ChainModal({
   return (
     <Modal isOpen={isOpen} onDismiss={onDismiss} maxWidth={400}>
       <ModalHeader onClose={onDismiss} title={title} />
-      <div className="grid grid-flow-row-dense grid-cols-1 gap-3 overflow-y-auto mt-4">
+      <div className="grid grid-flow-row-dense grid-cols-1 gap-3 mt-4 overflow-y-auto">
         {availableChains.map((key: ChainId, i: number) => {
           if (chain.id === key) {
             return (

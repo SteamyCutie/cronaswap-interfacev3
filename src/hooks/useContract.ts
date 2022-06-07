@@ -17,7 +17,6 @@ import {
   WNATIVE_ADDRESS,
 } from '@cronaswap/core-sdk'
 import { STOP_LIMIT_ORDER_ADDRESS } from '@sushiswap/limit-order-sdk'
-import MISO from '@cronaswap/miso/exports/all.json'
 
 import {
   ARGENT_WALLET_DETECTOR_ABI,
@@ -28,6 +27,8 @@ import BAR_ABI from '../constants/abis/bar.json'
 import BENTOBOX_ABI from '../constants/abis/bentobox.json'
 import BORING_HELPER_ABI from '../constants/abis/boring-helper.json'
 import CHAINLINK_ORACLE_ABI from '../constants/abis/chainlink-oracle.json'
+import CLONE_REWARDER_ABI from '../constants/abis/clone-rewarder.json'
+import COMPLEX_REWARDER_ABI from '../constants/abis/complex-rewarder.json'
 import { Contract } from '@ethersproject/contracts'
 import EIP_2612_ABI from '../constants/abis/eip-2612.json'
 import ENS_ABI from '../constants/abis/ens-registrar.json'
@@ -213,6 +214,14 @@ export function useChainlinkOracle(): Contract | null {
 
 export function useUniV2FactoryContract(): Contract | null {
   return useContract(UNI_FACTORY_ADDRESS, UNI_FACTORY_ABI, false)
+}
+
+export function useComplexRewarderContract(address, withSignerIfPossible?: boolean): Contract | null {
+  return useContract(address, COMPLEX_REWARDER_ABI, withSignerIfPossible)
+}
+
+export function useCloneRewarderContract(address, withSignerIfPossibe?: boolean): Contract | null {
+  return useContract(address, CLONE_REWARDER_ABI, withSignerIfPossibe)
 }
 
 export function useLimitOrderContract(withSignerIfPossibe?: boolean): Contract | null {

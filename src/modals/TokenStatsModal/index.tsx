@@ -1,22 +1,22 @@
 import React from 'react'
-import { useModalOpen, useTokenStatsModalToggle } from '../../states/application/hooks'
+import { useModalOpen, useTokenStatsModalToggle } from 'app/states/application/hooks'
 
-import { ApplicationModal } from '../../states/application/actions'
-import ExternalLink from '../../components/ExternalLink'
+import { ApplicationModal } from 'app/states/application/actions'
+import ExternalLink from 'app/components/ExternalLink'
 import Image from 'next/image'
-import Modal from '../../components/Modal'
-import ModalHeader from '../../components/ModalHeader'
+import Modal from 'app/components/Modal'
+import ModalHeader from 'app/components/ModalHeader'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import Typography from '../../components/Typography'
-import { useTokenInfo } from '../../features/invest/hooks'
-import { formatNumberScale, getExplorerLink } from '../../functions'
+import Typography from 'app/components/Typography'
+import { useTokenInfo } from 'app/features/invest/hooks'
+import { formatNumberScale, getExplorerLink } from 'app/functions'
 import { ExternalLink as LinkIcon } from 'react-feather'
-import { useCronaContract } from '../../hooks/useContract'
-import Button from '../../components/Button'
-import { RowFixed } from '../../components/Row'
+import { useCronaContract } from 'app/hooks/useContract'
+import Button from 'app/components/Button'
+import { RowFixed } from 'app/components/Row'
 import { ChainId, CRONA_ADDRESS } from '@cronaswap/core-sdk'
-import { useActiveWeb3React } from '../../services/web3'
+import { useActiveWeb3React } from 'app/services/web3'
 
 export default function TokenStatsModal({ token, price }: { token: any; price: any }) {
   const { i18n } = useLingui()
@@ -32,10 +32,10 @@ export default function TokenStatsModal({ token, price }: { token: any; price: a
 
   function getSummaryLine(title, value) {
     return (
-      <div className="flex flex-col w-full gap-2 px-3 py-1 rounded bg-dark-800">
-        <div className="flex items-center justify-between">
+      <div className="flex flex-col w-full gap-2 px-5 py-3 transition-all bg-gray-100 rounded-md dark:bg-gray-850">
+        <div className="flex items-center justify-between font-extrabold">
           {title}
-          <Typography variant="sm" className="flex items-center font-bold py-0.5">
+          <Typography variant="sm" className="flex items-center font-extrabold py-0.5">
             {value}
           </Typography>
         </div>
@@ -48,7 +48,7 @@ export default function TokenStatsModal({ token, price }: { token: any; price: a
       <div className="space-y-6">
         <div className="space-y-2">
           <ModalHeader title={token['name']} onClose={toggleWalletModal} />
-          <div className="flex flex-row w-full py-4">
+          <div className="flex flex-row w-full px-5 py-4 space-x-4 transition-all rounded-md bg-gray-100/50 dark:bg-gray-850/50">
             {token.icon && (
               <Image
                 src={token['icon']}
@@ -61,23 +61,25 @@ export default function TokenStatsModal({ token, price }: { token: any; price: a
             )}
             <div className="flex flex-col flex-1">
               <div className="flex flex-row">
-                <div className="text-2xl text-primary">{token['symbol']}</div>
+                <div className="text-xl font-extrabold transition-all text-primary">{token['symbol']}</div>
               </div>
               <div className="flex items-center justify-between gap-2 space-x-3">
                 {token?.address && (
                   <ExternalLink
-                    color="blue"
-                    startIcon={<LinkIcon size={16} />}
+                    color="blue-special"
+                    // startIcon={<LinkIcon size={16} />}
                     href={getExplorerLink(chainId, token['address'][chainId], 'address')}
                     className="outline-none"
                   >
-                    <Typography variant="sm">{i18n._(t`View Contract`)}</Typography>
+                    <Typography variant="base" weight={700}>
+                      {i18n._(t`View Contract`)}
+                    </Typography>
                   </ExternalLink>
                 )}
               </div>
             </div>
             <div className="flex items-center text-primary text-bold">
-              <div className="ml-2 text-2xl text-primary">{`${cronaPrice}`}</div>
+              <div className="ml-2 text-xl font-extrabold transition-all text-primary">{`${cronaPrice}`}</div>
             </div>
           </div>
         </div>
@@ -85,7 +87,7 @@ export default function TokenStatsModal({ token, price }: { token: any; price: a
           <div className="flex items-center justify-between">
             <Typography weight={700}>{i18n._(t`Supply & Market Cap`)}</Typography>
           </div>
-          <div className="flex flex-col gap-1 -m-1 flex-nowrap">
+          <div className="flex flex-col gap-1.5 -m-1 flex-nowrap">
             {getSummaryLine(
               <Typography variant="sm" className="flex items-center py-0.5">
                 {i18n._(t`Total Supply`)}
@@ -137,7 +139,7 @@ export default function TokenStatsModal({ token, price }: { token: any; price: a
                   })
                   .then((success) => {
                     if (success) {
-                      console.log('Successfully added CRONA to MetaMask')
+                      console.log('Successfully added EMO to MetaMask')
                     } else {
                       throw new Error('Something went wrong.')
                     }

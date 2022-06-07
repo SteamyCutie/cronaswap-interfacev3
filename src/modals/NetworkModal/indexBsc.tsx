@@ -1,14 +1,14 @@
-import { NETWORK_ICON, NETWORK_LABEL } from '../../config/networks'
-import { useModalOpen, useNetworkModalToggle } from '../../state/application/hooks'
+import { NETWORK_ICON, NETWORK_LABEL } from 'app/configs/networks'
+import { useModalOpen, useNetworkModalToggle } from 'app/states/application/hooks'
 
-import { ApplicationModal } from '../../state/application/actions'
+import { ApplicationModal } from 'app/states/application/actions'
 import { ChainId } from '@cronaswap/core-sdk'
 import Image from 'next/image'
-import Modal from '../../components/Modal'
-import ModalHeader from '../../components/ModalHeader'
+import Modal from 'app/components/Modal'
+import ModalHeader from 'app/components/ModalHeader'
 import React from 'react'
 import cookie from 'cookie-cutter'
-import { useActiveWeb3React } from '../../services/web3'
+import { useActiveWeb3React } from 'app/services/web3'
 
 export const SUPPORTED_NETWORKS: {
   [chainId in ChainId]?: {

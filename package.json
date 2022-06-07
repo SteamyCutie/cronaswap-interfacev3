@@ -87,6 +87,8 @@
     "@types/jest": "^27.0.2",
     "@types/node": "^16.11.0",
     "@types/qs": "^6.9.7",
+    "@types/react-virtualized-auto-sizer": "^1.0.1",
+    "@types/styled-components": "^5.1.25",
     "@uniswap/token-lists": "1.0.0-beta.24",
     "@visx/axis": "^1.17.1",
     "@visx/brush": "^1.18.1",

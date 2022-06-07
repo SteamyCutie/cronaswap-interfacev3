@@ -2,7 +2,7 @@ import { Currency, Token } from '@cronaswap/core-sdk'
 import { Tags, TokenInfo } from '@uniswap/token-lists'
 
 import { TokenList } from '@uniswap/token-lists/dist/types'
-import { isAddress } from '../../functions/validate'
+import { isAddress } from 'app/functions/validate'
 
 type TagDetails = Tags[keyof Tags]
 export interface TagInfo extends TagDetails {

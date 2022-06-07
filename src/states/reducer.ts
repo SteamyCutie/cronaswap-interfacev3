@@ -5,6 +5,7 @@ import create from './create/reducer'
 import lists from './lists/reducer'
 import mint from './mint/reducer'
 import multicall from './multicall/reducer'
+import trade from './trade/reducer'
 import transactions from './transactions/reducer'
 import user from './user/reducer'
 
@@ -15,6 +16,7 @@ const reducer = combineReducers({
   mint,
   burn,
   multicall,
+  trade,
   lists,
   create,
 })

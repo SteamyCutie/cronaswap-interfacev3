@@ -46,6 +46,11 @@ module.exports = {
         'gray-100': '#eaf0f6',
         'gray-50': '#f8fafc',
 
+        'dark-border': '#595959',
+        'dark-stroke': '#222222',
+        'light-border': '#A1A1A1',
+        'light-stroke': '#D7D7FF',
+
         purple: '#a755dd',
         pink: '#f338c3',
         green: '#7cff6b',
@@ -107,6 +112,8 @@ module.exports = {
       borderRadius: {
         none: '0',
         px: '1px',
+        '1.5xl': '14px',
+        '2.5xl': '20px',
         DEFAULT: '0.625rem',
       },
       boxShadow: {

@@ -1,16 +1,18 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import { SUPPORTED_WALLETS, injected, RPC } from '../../configs/wallets'
+import React, { useEffect, useState } from 'react'
+import { SUPPORTED_WALLETS, injected } from 'app/configs/wallets'
 import { UnsupportedChainIdError, useWeb3React } from '@web3-react/core'
-import { useModalOpen, useWalletModalToggle } from '../../states/application/hooks'
+import { useModalOpen, useNetworkModalToggle, useWalletModalToggle } from 'app/states/application/hooks'
+import { NETWORK_ICON, NETWORK_LABEL } from 'app/configs/networks'
+import { ChainId } from '@cronaswap/core-sdk'
 
 import { AbstractConnector } from '@web3-react/abstract-connector'
-import AccountDetails from '../../components/AccountDetails'
-import { ApplicationModal } from '../../states/application/actions'
-import { ButtonError } from '../../components/Button'
-import ExternalLink from '../../components/ExternalLink'
-import Modal from '../../components/Modal'
-import ModalHeader from '../../components/ModalHeader'
-import { OVERLAY_READY } from '../../entities/connectors/FortmaticConnector'
+import AccountDetails from 'app/components/AccountDetails'
+import { ApplicationModal } from 'app/states/application/actions'
+import { ButtonError } from 'app/components/Button'
+import ExternalLink from 'app/components/ExternalLink'
+import Modal from 'app/components/Modal'
+import ModalHeader from 'app/components/ModalHeader'
+import { OVERLAY_READY } from 'app/entities/connectors/FortmaticConnector'
 import Option from './Option'
 import PendingView from './PendingView'
 import ReactGA from 'react-ga'
@@ -18,9 +20,11 @@ import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 import { isMobile } from 'react-device-detect'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import usePrevious from '../../hooks/usePrevious'
-import { SUPPORTED_NETWORKS } from '../ChainModal'
-import { ChainId } from '@cronaswap/core-sdk'
+import usePrevious from 'app/hooks/usePrevious'
+import { useActiveWeb3React } from 'app/services/web3'
+import Image from 'next/image'
+import cookie from 'cookie-cutter'
+import { SUPPORTED_NETWORKS } from '../NetworkModal'
 
 const WALLET_VIEWS = {
   OPTIONS: 'options',
@@ -40,20 +44,20 @@ export default function WalletModal({
 }) {
   // console.log({ ENSName })
   // important that these are destructed from the account-specific web3-react context
-  const { active, account, connector, activate, error, deactivate } = useWeb3React()
-  // const {library} = useWeb3React<Web3Provider>()
+  const { active, account, connector, activate, error, deactivate, library, chainId } = useWeb3React()
 
   const { i18n } = useLingui()
 
   const [walletView, setWalletView] = useState(WALLET_VIEWS.ACCOUNT)
 
-  const [pendingWallet, setPendingWallet] = useState<{ connector?: AbstractConnector; id: string } | undefined>()
+  const [pendingWallet, setPendingWallet] = useState<AbstractConnector | undefined>()
 
   const [pendingError, setPendingError] = useState<boolean>()
 
   const walletModalOpen = useModalOpen(ApplicationModal.WALLET)
 
   const toggleWalletModal = useWalletModalToggle()
+  const toggleNetworkModal = useNetworkModalToggle()
 
   const previousAccount = usePrevious(account)
 
@@ -81,49 +85,7 @@ export default function WalletModal({
     }
   }, [setWalletView, active, error, connector, walletModalOpen, activePrevious, connectorPrevious])
 
-  const switchNetwork = async (chainIdToSwitch?: number) => {
-    if (chainIdToSwitch === undefined) chainIdToSwitch = ChainId.CRONOS
-
-    const params = SUPPORTED_NETWORKS[chainIdToSwitch]
-
-    // const provider = window?.ethereum
-
-    // provider
-    //   ?.request({
-    //     method: 'wallet_switchEthereumChain',
-    //     params: [{ chainId: SUPPORTED_NETWORKS[chainIdToSwitch].chainId }, account],
-    //   })
-    //   .then(() => {})
-    //   .catch((error) => {
-    //     error.code === 4902 &&
-    //       provider
-    //         ?.request({
-    //           method: 'wallet_addEthereumChain',
-    //           params: [params, account],
-    //         })
-    //         .then(() => {})
-    //         .catch((error) => {})
-    //   })
-
-    const library = await connector.getProvider()
-    debugger
-    library
-      ?.send('wallet_switchEthereumChain', [{ chainId: SUPPORTED_NETWORKS[chainIdToSwitch].chainId }, account])
-      .then(() => { })
-      .catch((error) => {
-        library
-          ?.send('wallet_addEthereumChain', [params, account])
-          .then(() => { })
-          .catch((error) => {
-            console.error(error)
-          })
-      })
-  }
-
-  const tryActivation = async (
-    connector: (() => Promise<AbstractConnector>) | AbstractConnector | undefined,
-    id: string
-  ) => {
+  const tryActivation = async (connector: (() => Promise<AbstractConnector>) | AbstractConnector | undefined) => {
     let name = ''
     let conn = typeof connector === 'function' ? await connector() : connector
 
@@ -139,7 +101,7 @@ export default function WalletModal({
       action: 'Change Wallet',
       label: name,
     })
-    setPendingWallet({ connector: conn, id }) // set wallet for pending view
+    setPendingWallet(conn) // set wallet for pending view
     setWalletView(WALLET_VIEWS.PENDING)
 
     // if the connector is walletconnect and the user has already tried to connect, manually reset the connector
@@ -179,11 +141,11 @@ export default function WalletModal({
           return null
         }
 
-        if (!window.web3 && !window.ethereum && (option.mobile || option.mobileOnly)) {
+        if (!window.web3 && !window.ethereum && option.mobile) {
           return (
             <Option
               onClick={() => {
-                tryActivation(option.connector, key)
+                tryActivation(option.connector)
               }}
               id={`connect-${key}`}
               key={key}
@@ -238,7 +200,7 @@ export default function WalletModal({
             onClick={() => {
               option.connector === connector
                 ? setWalletView(WALLET_VIEWS.ACCOUNT)
-                : !option.href && tryActivation(option.connector, key)
+                : !option.href && tryActivation(option.connector)
             }}
             key={key}
             active={option.connector === connector}
@@ -262,25 +224,83 @@ export default function WalletModal({
             onClose={toggleWalletModal}
           />
           <div>
-            {error instanceof UnsupportedChainIdError ? (
-              <h5>{i18n._(t`Please connect to the appropriate Cronos network.`)}</h5>
-            ) : (
-              i18n._(t`Error connecting. Try refreshing the page.`)
-            )}
-            {window?.ethereum && (
-              <>
-                <div style={{ marginTop: '1rem' }} />
-                <ButtonError
-                  error={true}
-                  size="sm"
-                  onClick={() => {
-                    switchNetwork()
-                  }}
-                >
-                  {i18n._(t`Switch to Cronos Network`)}
-                </ButtonError>
-              </>
-            )}
+            {error instanceof UnsupportedChainIdError
+              ? i18n._(t`Please connect to the appropriate Cronos network.`)
+              : i18n._(t`Error connecting. Try refreshing the page.`)}
+            <div style={{ marginTop: '1rem' }} />
+            <div className="grid grid-flow-row-dense grid-cols-1 gap-5 overflow-y-auto md:grid-cols-2">
+              {/* {[ChainId.CRONOS, ChainId.CRONOS_TESTNET].map((key: ChainId, i: number) => { */}
+              {[ChainId.CRONOS, ChainId.CRONOS_TESTNET].map((key: ChainId, i: number) => {
+                if (chainId === key) {
+                  return (
+                    <button
+                      key={i}
+                      className="w-full col-span-1 p-px rounded-2.5xl bg-gradient-to-r from-blue-special to-pink-special"
+                    >
+                      <div className="flex items-center w-full h-full px-3 py-2 space-x-3 rounded-2.5xl bg-gray-100/90 dark:bg-gray-850/90 transition-all">
+                        <Image
+                          src={NETWORK_ICON[key]}
+                          alt={`Switch to ${NETWORK_LABEL[key]} Network`}
+                          className="rounded-md"
+                          width="32px"
+                          height="32px"
+                        />
+                        <div className="text-base font-extrabold text-primary">{NETWORK_LABEL[key]}</div>
+                      </div>
+                    </button>
+                  )
+                }
+                return (
+                  <button
+                    key={i}
+                    onClick={async () => {
+                      const provider: any = window.ethereum
+                      const params = SUPPORTED_NETWORKS[key]
+
+                      try {
+                        await provider.request({
+                          method: 'wallet_addEthereumChain',
+                          params: [params],
+                        })
+                        cookie.set('chainId', key)
+
+                        console.log('You have succefully switched to Binance Test network')
+                      } catch (switchError) {
+                        if (switchError.code === 4902) {
+                          console.log('This network is not available in your metamask, please add it')
+                        }
+                        console.log('Failed to switch to the network')
+                      }
+                    }}
+                    className="flex items-center w-full col-span-1 px-3 py-2 space-x-3 rounded-2.5xl cursor-pointer border border-gray-800/10 dark:border-white/10 bg-gray-100 dark:bg-gray-850 hover:bg-gray-100/80 dark:hover:bg-gray-850/80 transition-all"
+                  >
+                    <Image
+                      src={NETWORK_ICON[key]}
+                      alt="Switch Network"
+                      className="rounded-md"
+                      width="32px"
+                      height="32px"
+                    />
+                    <div className="text-base font-extrabold text-primary">{NETWORK_LABEL[key]}</div>
+                  </button>
+                )
+              })}
+              {/* {['Clover', 'Telos', 'Optimism'].map((network, i) => (
+          <button
+            key={i}
+            className="flex items-center w-full col-span-1 p-3 space-x-3 rounded cursor-pointer bg-dark-800 hover:bg-dark-700"
+          >
+            <Image
+              src="/images/tokens/unknown.png"
+              alt="Switch Network"
+              className="rounded-md"
+              width="32px"
+              height="32px"
+            />
+            <div className="font-bold text-primary">{network} (Coming Soon)</div>
+          </button>
+        ))} */}
+            </div>
             <div style={{ marginTop: '1rem' }} />
             <ButtonError error={true} size="sm" onClick={deactivate}>
               {i18n._(t`Disconnect`)}
@@ -306,8 +326,7 @@ export default function WalletModal({
         <div className="flex flex-col space-y-6">
           {walletView === WALLET_VIEWS.PENDING ? (
             <PendingView
-              id={pendingWallet.id}
-              connector={pendingWallet.connector}
+              connector={pendingWallet}
               error={pendingError}
               setPendingError={setPendingError}
               tryActivation={tryActivation}
@@ -316,9 +335,9 @@ export default function WalletModal({
             <div className="flex flex-col space-y-5 overflow-y-auto">{getOptions()}</div>
           )}
           {walletView !== WALLET_VIEWS.PENDING && (
-            <div className="flex flex-col text-center">
-              <div className="text-secondary">{i18n._(t`New to CRONOS?`)}</div>
-              <ExternalLink href="https://ethereum.org/wallets/" color="blue">
+            <div className="flex flex-col text-base text-center">
+              <div className="text-secondary">{i18n._(t`New to Ethereum?`)}</div>
+              <ExternalLink href="https://ethereum.org/wallets/" color="blue-special">
                 {i18n._(t`Learn more about wallets`)}
               </ExternalLink>
             </div>

@@ -50,7 +50,7 @@ const InvestList = () => {
 
   const [activeFilter, setActiveFilter] = useState(0)
 
-  const filterStyle = 'flex items-center text-xs md:text-sm lg:text-base justify-center px-4 py-2 rounded border font-bold dark:font-normal border-gray-100 dark:border-gray-800 shadow-md opacity-80 hover:opacity-100 cursor-pointer transition-all'
+  const filterStyle = 'flex items-center text-xs lg:text-sm justify-center px-4 py-2 rounded border font-bold dark:font-normal border-gray-100 dark:border-gray-800 shadow-md opacity-80 hover:opacity-100 cursor-pointer transition-all'
 
   return (
     <div className="w-full col-span-4 mt-4 space-y-3 lg:col-span-3">

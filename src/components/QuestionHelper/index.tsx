@@ -26,7 +26,7 @@ const QuestionHelper: FC<{ text?: any }> = ({ children, text }) => {
   return (
     <Tooltip text={text} show={show}>
       <div
-        className="flex items-center justify-center outline-none cursor-help hover:text-primary"
+        className="flex items-center justify-center -mt-[1px] ml-1 transition-all outline-none cursor-help hover:text-primary"
         onClick={open}
         onMouseEnter={open}
         onMouseLeave={close}

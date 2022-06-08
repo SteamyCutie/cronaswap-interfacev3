@@ -1,14 +1,14 @@
-import { NETWORK_ICON, NETWORK_LABEL } from 'app/configs/networks'
-import { useModalOpen, useNetworkModalToggle } from 'app/states/application/hooks'
+import { NETWORK_ICON, NETWORK_LABEL } from '../../configs/networks'
+import { useModalOpen, useNetworkModalToggle } from '../../states/application/hooks'
 
-import { ApplicationModal } from 'app/states/application/actions'
+import { ApplicationModal } from '../../states/application/actions'
 import { ChainId } from '@cronaswap/core-sdk'
 import Image from 'next/image'
-import Modal from 'app/components/Modal'
-import ModalHeader from 'app/components/ModalHeader'
+import Modal from '../../components/Modal'
+import ModalHeader from '../../components/ModalHeader'
 import React from 'react'
 import cookie from 'cookie-cutter'
-import { useActiveWeb3React } from 'app/services/web3'
+import { useActiveWeb3React } from '../../services/web3'
 
 export const SUPPORTED_NETWORKS: {
   [chainId in ChainId]?: {
@@ -79,9 +79,9 @@ export default function NetworkModal(): JSX.Element | null {
   return (
     <Modal isOpen={networkModalOpen} onDismiss={toggleNetworkModal} maxWidth={572}>
       <ModalHeader onClose={toggleNetworkModal} title="Select a Network" />
-      <div className="mb-6 text-base text-primary">
+      <div className="mb-6 text-base text-gray-800 dark:text-gray-50 transition-all">
         You are currently browsing <span className="font-bold text-pink-special">EMO</span> on the{' '}
-        <span className="font-bold text-blue">{NETWORK_LABEL[chainId]}</span> network
+        <span className="font-bold text-blue">{NETWORK_LABEL[chainId]}</span> network.
       </div>
 
       <div className="grid grid-flow-row-dense grid-cols-1 gap-5 overflow-y-auto md:grid-cols-2">
@@ -91,9 +91,9 @@ export default function NetworkModal(): JSX.Element | null {
             return (
               <button
                 key={i}
-                className="w-full col-span-1 p-px rounded-2.5xl bg-gradient-to-r from-blue-special to-pink-special"
+                className="w-full col-span-1 p-px rounded-2.5xl bg-gradient-to-r from-blue to-pink"
               >
-                <div className="flex items-center w-full h-full px-3 py-2 space-x-3 rounded-2.5xl bg-gray-100/90 dark:bg-gray-800/90 transition-all">
+                <div className="flex items-center w-full h-full px-3 py-2 space-x-3 rounded-2.5xl bg-gray-100/90 dark:bg-gray-850/90 transition-all">
                   <Image
                     src={NETWORK_ICON[key]}
                     alt={`Switch to ${NETWORK_LABEL[key]} Network`}
@@ -101,7 +101,7 @@ export default function NetworkModal(): JSX.Element | null {
                     width="32px"
                     height="32px"
                   />
-                  <div className="text-base font-extrabold text-primary">{NETWORK_LABEL[key]}</div>
+                  <div className="font-extrabold text-gray-800 dark:text-gray-50 transition-all text-base">{NETWORK_LABEL[key]}</div>
                 </div>
               </button>
             )
@@ -119,17 +119,17 @@ export default function NetworkModal(): JSX.Element | null {
                   library?.send('wallet_addEthereumChain', [params, account])
                 }
               }}
-              className="flex items-center w-full col-span-1 px-3 py-2 space-x-3 rounded-2.5xl cursor-pointer border border-gray-800/10 dark:border-white/10 bg-gray-100 dark:bg-gray-800 hover:bg-gray-100/80 dark:hover:bg-gray-800/80 transition-all"
+              className="flex items-center w-full col-span-1 px-3 py-2 space-x-3 rounded-2.5xl cursor-pointer border bordergray-800/10 dark:border-gray-50/10 bg-gray-50 dark:bg-gray-800 hover:opacity-80 dark:hover:opacity-80 transition-all"
             >
               <Image src={NETWORK_ICON[key]} alt="Switch Network" className="rounded-md" width="32px" height="32px" />
-              <div className="text-base font-extrabold text-primary">{NETWORK_LABEL[key]}</div>
+              <div className="font-extrabold text-gray-800 dark:text-gray-50 transition-all text-base">{NETWORK_LABEL[key]}</div>
             </button>
           )
         })}
         {/* {['Clover', 'Telos', 'Optimism'].map((network, i) => (
           <button
             key={i}
-            className="flex items-center w-full col-span-1 p-3 space-x-3 rounded-2.5xl cursor-pointer border border-gray-800/10 dark:border-white/10 bg-gray-100 dark:bg-gray-800 hover:bg-gray-100/80 dark:hover:bg-gray-800/80 transition-all"
+            className="flex items-center w-full col-span-1 p-3 space-x-3 rounded-2.5xl cursor-pointer border bordergray-800/10 dark:border-gray-50/10 bg-gray-100 dark:bg-gray-850 hover:bg-gray-100/80 dark:hover:bg-gray-850/80 transition-all"
           >
             <Image
               src="/images/tokens/unknown.png"
@@ -138,7 +138,7 @@ export default function NetworkModal(): JSX.Element | null {
               width="32px"
               height="32px"
             />
-            <div className="font-bold text-primary">{network} (Coming Soon)</div>
+            <div className="font-bold text-gray-800 dark:text-gray-50 transition-all">{network} (Coming Soon)</div>
           </button>
         ))} */}
       </div>

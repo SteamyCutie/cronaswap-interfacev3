@@ -1,14 +1,14 @@
-import { NETWORK_ICON, NETWORK_LABEL } from 'app/configs/networks'
-import { useModalOpen, useNetworkModalToggle } from 'app/states/application/hooks'
+import { NETWORK_ICON, NETWORK_LABEL } from '../../config/networks'
+import { useModalOpen, useNetworkModalToggle } from '../../state/application/hooks'
 
-import { ApplicationModal } from 'app/states/application/actions'
-import { ChainId } from '@cronaswap/core-sdk'
+import { ApplicationModal } from '../../state/application/actions'
+import { ChainId } from '@evmoswap/core-sdk'
 import Image from 'next/image'
-import Modal from 'app/components/Modal'
-import ModalHeader from 'app/components/ModalHeader'
+import Modal from '../../components/Modal'
+import ModalHeader from '../../components/ModalHeader'
 import React from 'react'
 import cookie from 'cookie-cutter'
-import { useActiveWeb3React } from 'app/services/web3'
+import { useActiveWeb3React } from '../../services/web3'
 
 export const SUPPORTED_NETWORKS: {
   [chainId in ChainId]?: {
@@ -35,27 +35,27 @@ export const SUPPORTED_NETWORKS: {
     blockExplorerUrls: ['https://etherscan.com'],
   },
 
-  [ChainId.CRONOS]: {
-    chainId: '0x19',
-    chainName: 'Cronos Mainnet',
+  [ChainId.EVMOS]: {
+    chainId: '0x2329',
+    chainName: 'Evmos Mainnet',
     nativeCurrency: {
-      name: 'Cro',
-      symbol: 'CRO',
+      name: 'Evmos',
+      symbol: 'EVMOS',
       decimals: 18,
     },
-    rpcUrls: ['https://evm-cronos.crypto.org'],
-    blockExplorerUrls: ['https://cronoscan.com'],
+    rpcUrls: ['https://eth.bd.evmos.org:8545'],
+    blockExplorerUrls: ['https://evm.evmos.org'],
   },
-  [ChainId.CRONOS_TESTNET]: {
-    chainId: '0x152',
-    chainName: 'Cronos Testnet',
+  [ChainId.EVMOS_TESTNET]: {
+    chainId: '0x2328',
+    chainName: 'Evmos Testnet',
     nativeCurrency: {
-      name: 'tCro',
-      symbol: 'TCRO',
+      name: 'Evmos',
+      symbol: 'EVMOS',
       decimals: 18,
     },
-    rpcUrls: ['https://cronos-testnet-3.crypto.org:8545'],
-    blockExplorerUrls: ['https://cronos.org/explorer/testnet3'],
+    rpcUrls: ['https://eth.bd.evmos.dev:8545'],
+    blockExplorerUrls: ['https://evm.evmos.dev/'],
   },
   [ChainId.BSC_TESTNET]: {
     chainId: '0x61',
@@ -81,13 +81,13 @@ export function BscNetworkModal(): JSX.Element | null {
     <Modal isOpen={networkModalOpen} onDismiss={toggleNetworkModal} maxWidth={672}>
       <ModalHeader onClose={toggleNetworkModal} title="Select a Network" />
       <div className="mb-6 text-lg text-primary">
-        You are currently browsing <span className="font-bold text-pink">CRONA</span> on the{' '}
+        You are currently browsing <span className="font-bold text-pink">EMO</span> on the{' '}
         <span className="font-bold text-blue">{NETWORK_LABEL[chainId]}</span> network
       </div>
 
       <div className="grid grid-flow-row-dense grid-cols-1 gap-5 overflow-y-auto md:grid-cols-2">
-        {/* {[ChainId.CRONOS, ChainId.CRONOS_TESTNET].map((key: ChainId, i: number) => { */}
-        {[ChainId.CRONOS, ChainId.CRONOS_TESTNET, ChainId.BSC_TESTNET].map((key: ChainId, i: number) => {
+        {/* {[ChainId.EVMOS, ChainId.EVMOS_TESTNET].map((key: ChainId, i: number) => { */}
+        {[ChainId.EVMOS, ChainId.EVMOS_TESTNET, ChainId.BSC_TESTNET].map((key: ChainId, i: number) => {
           if (chainId === key) {
             return (
               <button key={i} className="w-full col-span-1 p-px rounded bg-gradient-to-r from-blue to-pink">

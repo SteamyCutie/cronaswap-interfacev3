@@ -153,7 +153,23 @@ const AppBar = (): JSX.Element => {
                       </div>
                     )}
 
-                    <div className="w-auto flex items-center rounded bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-gray-50 shadow-md hover:opacity-80 transition-color p-0.5 whitespace-nowrap text-sm font-bold cursor-pointer select-none pointer-events-auto">
+                    <div className="flex w-auto text-sm font-bold transition-all rounded-2xl bg-gradient-to-r p-0.5 from-blue to-pink">
+                      <div
+                        className={`flex items-center justify-between h-full rounded-1.5xl cursor-pointer pointer-events-auto select-none text-gray-800 dark:text-gray-50 transition-all whitespace-nowrap ${account ? ' bg-gray-100/90 dark:bg-gray-850/90' : ''
+                          }`}
+                      >
+                        {account && chainId && userEthBalance && (
+                          <>
+                            <div className="pl-4 pr-2 py-2 text-base font-extrabold">
+                              {userEthBalance?.toSignificant(4)} {NATIVE[chainId].symbol}
+                            </div>
+                          </>
+                        )}
+                        <Web3Status />
+                      </div>
+                    </div>
+
+                    {/* <div className="w-auto flex items-center rounded bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-gray-50 shadow-md hover:opacity-80 transition-color p-0.5 whitespace-nowrap text-sm font-bold cursor-pointer select-none pointer-events-auto">
                       {account && chainId && userEthBalance && (
                         <>
                           <div className="px-3 py-2 text-bold">
@@ -162,7 +178,7 @@ const AppBar = (): JSX.Element => {
                         </>
                       )}
                       <Web3Status />
-                    </div>
+                    </div> */}
                     {/* <div className="hidden md:block">
                       <LanguageSwitch />
                     </div> */}

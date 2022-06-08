@@ -23,8 +23,6 @@ const MAX_WIDTH_CLASS_MAPPING = {
   '3xl': 'lg:max-w-3xl',
 }
 
-import useDesktopMediaQuery from '../../hooks/useDesktopMediaQuery'
-
 interface TriggerProps {
   open: boolean
   setOpen: (x: boolean) => void
@@ -61,8 +59,8 @@ const HeadlessUiModal: HeadlessUiModalType<Props> = ({ children: childrenProp, t
       typeof triggerProp === 'function'
         ? triggerProp({ onClick, open, setOpen })
         : isValidElement(triggerProp)
-        ? cloneElement(triggerProp, { onClick })
-        : null,
+          ? cloneElement(triggerProp, { onClick })
+          : null,
     [onClick, open, triggerProp]
   )
 
@@ -103,11 +101,12 @@ const HeadlessUiModalControlled: FC<ControlledModalProps> = ({
   maxWidth = 'lg',
   unmount,
 }) => {
-  const isDesktop = useDesktopMediaQuery()
+  // const isDesktop = useDesktopMediaQuery()
+  const isDesktop = window.innerWidth > 1024 ? true : false
   return (
     <Transition appear show={isOpen} as={Fragment} afterLeave={afterLeave} unmount={unmount}>
       <Dialog as="div" className="fixed z-50 inset-0" onClose={onDismiss} unmount={unmount}>
-        <div className="relative flex items-center justify-center block min-h-screen text-center">
+        <div className="relative items-center justify-center block min-h-screen text-center">
           <Transition.Child
             unmount={false}
             as={Fragment}

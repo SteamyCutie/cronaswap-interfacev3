@@ -6,26 +6,35 @@ import React from 'react'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { useWalletModalToggle } from '../../states/application/hooks'
+import { classNames } from 'app/functions'
 
-export default function Web3Connect({ color = 'gray', size = 'sm', className = '', ...rest }: ButtonProps) {
+const Web3Connect = ({
+  color = 'gradient',
+  size = 'sm',
+  className = 'px-6 py-3 font-extrabold text-white',
+  ...rest
+}: ButtonProps) => {
   const { i18n } = useLingui()
   const toggleWalletModal = useWalletModalToggle()
   const { error } = useWeb3React()
   return error ? (
     <div
-      className="flex items-center justify-center px-4 py-2 font-semibold text-white border rounded bg-opacity-80 border-red bg-red hover:bg-opacity-100"
+      className={classNames(
+        `flex items-center justify-center px-4 py-2 text-white rounded-1.5xl bg-opacity-80 bg-red hover:bg-opacity-100`,
+        className
+      )}
       onClick={toggleWalletModal}
     >
       <div className="mr-1">
         <Activity className="w-4 h-4" />
       </div>
-      {error instanceof UnsupportedChainIdError ? i18n._(t`You are on the wrong network`) : i18n._(t`Error`)}
+      {error instanceof UnsupportedChainIdError ? i18n._(t`Wrong Network`) : i18n._(t`Error`)}
     </div>
   ) : (
     <Button
       id="connect-wallet"
       onClick={toggleWalletModal}
-      variant="outlined"
+      variant="filled"
       color={color}
       className={className}
       size={size}
@@ -35,3 +44,5 @@ export default function Web3Connect({ color = 'gray', size = 'sm', className = '
     </Button>
   )
 }
+
+export default Web3Connect

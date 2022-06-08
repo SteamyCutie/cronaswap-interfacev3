@@ -104,7 +104,7 @@ const Web3StatusInner = () => {
     return (
       <div
         id="web3-status-connected"
-        className="flex items-center px-3 py-2 text-sm rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-50 transition-all"
+        className="flex items-center px-3 py-2 m-0.5 text-sm rounded-xl bg-gray-100 dark:bg-gray-850 transition-all text-gray-800/80 dark:text-gray-50/80"
         onClick={toggleWalletModal}
       >
         {hasPendingTransactions ? (
@@ -121,7 +121,7 @@ const Web3StatusInner = () => {
       </div>
     )
   } else {
-    return <Web3Connect style={{ paddingTop: '6px', paddingBottom: '6px' }} />
+    return <Web3Connect className="text-sm" />
   }
 }
 

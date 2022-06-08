@@ -4,12 +4,12 @@ import AutoSizer from 'react-virtualized-auto-sizer'
 import CurrencyModalView from './CurrencyModalView'
 import ManageLists from './ManageLists'
 import ManageTokens from './ManageTokens'
-import ModalHeader from '../../components/ModalHeader'
-import { Token } from '@evmoswap/core-sdk'
+import ModalHeader from 'app/components/ModalHeader'
+import { Token } from '@cronaswap/core-sdk'
 import { TokenList } from '@uniswap/token-lists'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import { classNames } from '../../functions'
+import { classNames } from 'app/functions'
 
 function Manage({
   onDismiss,

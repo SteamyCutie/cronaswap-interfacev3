@@ -1,6 +1,6 @@
-import { ALLOWED_PRICE_IMPACT_HIGH, PRICE_IMPACT_WITHOUT_FEE_CONFIRM_MIN } from '../../constants'
+import { ALLOWED_PRICE_IMPACT_HIGH, PRICE_IMPACT_WITHOUT_FEE_CONFIRM_MIN } from 'app/constants'
 
-import { Percent } from '@evmoswap/core-sdk'
+import { Percent } from '@cronaswap/core-sdk'
 
 /**
  * Given the price impact, get user confirmation.

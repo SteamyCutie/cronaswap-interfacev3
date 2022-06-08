@@ -1,12 +1,12 @@
 import { Currency, CurrencyAmount, JSBI, Percent, Token, TradeType, Trade as V2Trade } from '@cronaswap/core-sdk'
-import { DAI, CRONA, USDC } from '../config/tokens'
+import { DAI, CRONA, USDC } from '../configs/tokens'
 import { useMemo, useState } from 'react'
 
 import { splitSignature } from '@ethersproject/bytes'
 import { useActiveWeb3React } from '../services/web3'
 import { useEIP2612Contract } from './useContract'
 import useIsArgentWallet from './useIsArgentWallet'
-import { useSingleCallResult } from '../state/multicall/hooks'
+import { useSingleCallResult } from '../states/multicall/hooks'
 import useTransactionDeadline from './useTransactionDeadline'
 
 enum PermitType {
@@ -171,31 +171,31 @@ export function useERC20Permit(
 
         const message = allowed
           ? {
-              holder: account,
-              spender,
-              allowed,
-              nonce: nonceNumber,
-              expiry: signatureDeadline,
-            }
+            holder: account,
+            spender,
+            allowed,
+            nonce: nonceNumber,
+            expiry: signatureDeadline,
+          }
           : {
-              owner: account,
-              spender,
-              value,
-              nonce: nonceNumber,
-              deadline: signatureDeadline,
-            }
+            owner: account,
+            spender,
+            value,
+            nonce: nonceNumber,
+            deadline: signatureDeadline,
+          }
         const domain = permitInfo.version
           ? {
-              name: permitInfo.name,
-              version: permitInfo.version,
-              verifyingContract: tokenAddress,
-              chainId,
-            }
+            name: permitInfo.name,
+            version: permitInfo.version,
+            verifyingContract: tokenAddress,
+            chainId,
+          }
           : {
-              name: permitInfo.name,
-              verifyingContract: tokenAddress,
-              chainId,
-            }
+            name: permitInfo.name,
+            verifyingContract: tokenAddress,
+            chainId,
+          }
         const data = JSON.stringify({
           types: {
             EIP712Domain: permitInfo.version ? EIP712_DOMAIN_TYPE : EIP712_DOMAIN_TYPE_NO_VERSION,

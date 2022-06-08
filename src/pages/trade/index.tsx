@@ -470,9 +470,9 @@ const Trade = () => {
                       onSwitchTokens()
                     }}
                   >
-                    <div className="p-1.5 rounded-[18px] bg-gray-100 dark:bg-gray-800 transition-all">
+                    <div className="p-1.5 rounded-[18px] bg-gray-100 dark:bg-gray-850 transition-all">
                       <div
-                        className="p-3 transition-all bg-white rounded-1.5xl hover:bg-white/80 dark:bg-gray-850 dark:hover:bg-gray-850/80 text-gray-850 dark:text-gray-100"
+                        className="p-3 transition-all bg-white rounded-1.5xl hover:bg-white/80 dark:bg-gray-800 dark:hover:bg-gray-800/80 text-gray-850 dark:text-gray-100"
                       // onMouseEnter={() => setAnimateSwapArrows(true)}
                       // onMouseLeave={() => setAnimateSwapArrows(false)}
                       >

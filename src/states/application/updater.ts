@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { useActiveWeb3React } from '../../services/web3'
-import useDebounce from '../../hooks/useDebounce'
-import useIsWindowVisible from '../../hooks/useIsWindowVisible'
+import { useActiveWeb3React } from 'app/services/web3'
+import useDebounce from 'app/hooks/useDebounce'
+import useIsWindowVisible from 'app/hooks/useIsWindowVisible'
 import { updateBlockNumber } from './actions'
 
 export default function Updater(): null {

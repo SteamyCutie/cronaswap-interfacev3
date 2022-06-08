@@ -1,11 +1,11 @@
-import { ONE_BIPS } from '../../constants'
-import { Percent } from '@evmoswap/core-sdk'
+import { ONE_BIPS } from 'app/constants'
+import { Percent } from '@cronaswap/core-sdk'
 import React from 'react'
-import { warningSeverity } from '../../functions/prices'
+import { warningSeverity } from 'app/functions/prices'
 
 const SEVERITY = {
   0: 'text-green-special',
-  1: 'text-dark-primary dark:text-light-primary',
+  1: 'text-gray-800 dark:text-gray-50',
   2: 'text-yellow',
   3: 'text-red',
   4: 'text-red',

@@ -1,13 +1,13 @@
 import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/outline'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import loadingCircle from 'app/animation/loading-circle.json'
+import loadingCircle from 'app/animations/loading-circle.json'
 import { ModalActionProps } from 'app/components/Modal/Action'
 import Typography from 'app/components/Typography'
 import { getExplorerLink, shortenString } from 'app/functions'
 import { useActiveWeb3React } from 'app/services/web3'
-import { useAppSelector } from 'app/state/hooks'
-import { selectTxStatus } from 'app/state/transactions/selectors'
+import { useAppSelector } from 'app/states/hooks'
+import { selectTxStatus } from 'app/states/transactions/selectors'
 import Lottie from 'lottie-react'
 import React, { FC, ReactElement } from 'react'
 
@@ -67,12 +67,12 @@ const SubmittedModalContent: FC<SubmittedModalContentProps> = ({
               {txStatus === 'PENDING'
                 ? i18n._(t`Processing`)
                 : txStatus === 'SUCCESS'
-                ? i18n._(t`Success`)
-                : txStatus === 'CANCELLED'
-                ? i18n._(t`Cancelled`)
-                : txStatus === 'FAILED'
-                ? i18n._(t`Failed`)
-                : ''}
+                  ? i18n._(t`Success`)
+                  : txStatus === 'CANCELLED'
+                    ? i18n._(t`Cancelled`)
+                    : txStatus === 'FAILED'
+                      ? i18n._(t`Failed`)
+                      : ''}
               {txStatus === 'PENDING' ? (
                 <div className="w-4 h-4">
                   <Lottie animationData={loadingCircle} autoplay loop />

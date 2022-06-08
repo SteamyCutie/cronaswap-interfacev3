@@ -1,8 +1,8 @@
-import { Currency, Price } from '@evmoswap/core-sdk'
+import { Currency, Price } from '@cronaswap/core-sdk'
 import React, { useCallback } from 'react'
 
-import Typography from '../../components/Typography'
-import { classNames } from '../../functions'
+import Typography from 'app/components/Typography'
+import { classNames } from 'app/functions'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import { SwitchHorizontalIcon } from '@heroicons/react/outline'
@@ -38,7 +38,7 @@ export default function TradePrice({ price, showInverted, setShowInverted, class
       onClick={flipPrice}
       title={text}
       className={classNames(
-        'flex justify-between items-center w-full cursor-pointer rounded-md text-dark-primary hover:text-dark-primary/80 dark:text-light-primary dark:hover:text-light-primary/80 transition-all',
+        'flex justify-between items-center w-full cursor-pointer rounded-md text-gray-800 hover:text-gray-800/80 dark:text-gray-50 dark:hover:text-gray-50/80 transition-all',
         className
       )}
     >

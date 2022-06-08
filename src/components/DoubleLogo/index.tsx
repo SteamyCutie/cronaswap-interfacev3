@@ -1,7 +1,7 @@
-import { Currency } from '@evmoswap/core-sdk'
+import { Currency } from '@cronaswap/core-sdk'
 import { CurrencyLogo } from '../CurrencyLogo'
 import React from 'react'
-import { classNames } from '../../functions'
+import { classNames } from 'app/functions'
 
 interface DoubleCurrencyLogoProps {
   margin?: boolean

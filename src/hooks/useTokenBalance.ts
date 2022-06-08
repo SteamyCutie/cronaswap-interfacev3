@@ -6,7 +6,7 @@ import ERC20_ABI from '../constants/abis/erc20.json'
 import { WNATIVE_ADDRESS } from '@cronaswap/core-sdk'
 import { isAddress } from '../functions/validate'
 import { useActiveWeb3React } from '../services/web3'
-import { useBlockNumber } from '../state/application/hooks'
+import { useBlockNumber } from '../states/application/hooks'
 import { useContract } from './useContract'
 import useTransactionStatus from './useTransactionStatus'
 

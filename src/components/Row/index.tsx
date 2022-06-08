@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 
-import { classNames } from '../../functions'
+import { classNames } from 'app/functions'
 import styled from 'styled-components'
 
 interface RowProps {
@@ -39,7 +39,13 @@ export const Row: FC<React.HTMLAttributes<HTMLDivElement> & RowProps> = ({
   </div>
 )
 
-export const RowBetween = styled(Row)`
+interface RowBetweenProps {
+  disabled?: any
+  selected?: any
+  width?: any
+}
+
+export const RowBetween: FC<React.HTMLAttributes<HTMLDivElement> & RowBetweenProps> = styled(Row)`
   justify-content: space-between;
 `
 

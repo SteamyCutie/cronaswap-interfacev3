@@ -1,8 +1,8 @@
-import { Currency, CurrencyAmount, Percent } from '@evmoswap/core-sdk'
+import { Currency, CurrencyAmount, Percent } from '@cronaswap/core-sdk'
 import React, { useMemo } from 'react'
 
 import { t } from '@lingui/macro'
-import { warningSeverity } from '../../functions/prices'
+import { warningSeverity } from 'app/functions/prices'
 
 export function FiatValue({
   fiatValue,

@@ -1,8 +1,8 @@
-import { Currency, Trade, TradeType } from '@evmoswap/core-sdk'
+import { Currency, Trade, TradeType } from '@cronaswap/core-sdk'
 import React, { Fragment, memo } from 'react'
 
 import { ChevronRightIcon } from '@heroicons/react/solid'
-import { unwrappedToken } from '../../functions/currency/wrappedCurrency'
+import { unwrappedToken } from 'app/functions/currency/wrappedCurrency'
 
 const SwapRoute = memo(({ trade }: { trade: Trade<Currency, Currency, TradeType> }) => {
   return (
@@ -13,7 +13,7 @@ const SwapRoute = memo(({ trade }: { trade: Trade<Currency, Currency, TradeType>
         return (
           <Fragment key={i}>
             <div className="flex space-x-2 flex-end">
-              <div className="text-sm font-bold text-dark-primary dark:text-light-primary transition-all">
+              <div className="text-sm font-bold text-gray-800 dark:text-gray-50 transition-all">
                 {currency.symbol}
               </div>
             </div>

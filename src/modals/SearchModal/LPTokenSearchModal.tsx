@@ -1,4 +1,4 @@
-import { Currency, Token } from '@evmoswap/core-sdk'
+import { Currency, Token } from '@cronaswap/core-sdk'
 import React, { useCallback, useEffect, useState } from 'react'
 
 import CurrencyModalView from './CurrencyModalView'
@@ -6,13 +6,13 @@ import { CurrencySearch } from './CurrencySearch'
 import ImportList from './ImportList'
 import { ImportToken } from './ImportToken'
 import Manage from './Manage'
-import Modal from '../../components/Modal'
+import Modal from 'app/components/Modal'
 import { TokenList } from '@uniswap/token-lists'
-import { WrappedTokenInfo } from '../../state/lists/wrappedTokenInfo'
-import useLast from '../../hooks/useLast'
-import usePrevious from '../../hooks/usePrevious'
+import { WrappedTokenInfo } from 'app/states/lists/wrappedTokenInfo'
+import useLast from 'app/hooks/useLast'
+import usePrevious from 'app/hooks/usePrevious'
 import { LPTokenSearch } from './LPTokenSearch'
-import { FarmPairInfo } from 'app/constants/farms'
+import { FarmPairInfo } from 'app/constants/farmsv1'
 
 interface LPTokenSearchModalProps {
   isOpen: boolean

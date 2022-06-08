@@ -1,17 +1,17 @@
-import { Token } from '@evmoswap/core-sdk'
+import { Token } from '@cronaswap/core-sdk'
 import React, { useCallback, useRef } from 'react'
 
 import AutoSizer from 'react-virtualized-auto-sizer'
 import { FixedSizeList } from 'react-window'
-import ModalHeader from '../../components/ModalHeader'
-import { useActiveWeb3React } from '../../services/web3'
+import ModalHeader from 'app/components/ModalHeader'
+import { useActiveWeb3React } from 'app/services/web3'
 import { useRouter } from 'next/router'
-import useFuse from '../../hooks/useFuse'
-import useSortableData from '../../hooks/useSortableData'
+import useFuse from 'app/hooks/useFuse'
+import useSortableData from 'app/hooks/useSortableData'
 import LPTokenList from './LPTokenList'
 import Search from 'app/components/Search'
-import { FarmPairInfo } from 'app/constants/farms'
-import useFarms from 'app/features/farm/useFarms'
+import { FarmPairInfo } from 'app/constants/farmsv1'
+import useFarms from 'app/features/invest/useFarmsV2'
 
 interface LPTokenSearchProps {
   onDismiss: () => void

@@ -1,4 +1,4 @@
-import { Currency, CurrencyAmount, Percent } from '@evmoswap/core-sdk'
+import { Currency, CurrencyAmount, Percent } from '@cronaswap/core-sdk'
 import React, { useMemo } from 'react'
 
 import { t } from '@lingui/macro'

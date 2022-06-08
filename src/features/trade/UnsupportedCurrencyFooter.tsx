@@ -1,17 +1,17 @@
-import { AutoRow, RowBetween } from '../../components/Row'
-import { Currency, Token } from '@evmoswap/core-sdk'
+import { AutoRow, RowBetween } from 'app/components/Row'
+import { Currency, Token } from '@cronaswap/core-sdk'
 import React, { useState } from 'react'
 
-import { AutoColumn } from '../../components/Column'
-import Button from '../../components/Button'
-import CloseIcon from '../../components/CloseIcon'
-import { CurrencyLogo } from '../../components/CurrencyLogo'
-import ExternalLink from '../../components/ExternalLink'
-import Modal from '../../components/Modal'
-import { getExplorerLink } from '../../functions/explorer'
+import { AutoColumn } from 'app/components/Column'
+import Button from 'app/components/Button'
+import CloseIcon from 'app/components/CloseIcon'
+import { CurrencyLogo } from 'app/components/CurrencyLogo'
+import ExternalLink from 'app/components/ExternalLink'
+import Modal from 'app/components/Modal'
+import { getExplorerLink } from 'app/functions/explorer'
 import styled from 'styled-components'
-import { useActiveWeb3React } from '../../services/web3'
-import { useUnsupportedTokens } from '../../hooks/Tokens'
+import { useActiveWeb3React } from 'app/services/web3'
+import { useUnsupportedTokens } from 'app/hooks/Tokens'
 
 const DetailsFooter = styled.div<{ show: boolean }>`
   padding-top: calc(16px + 2rem);
@@ -50,8 +50,8 @@ export default function UnsupportedCurrencyFooter({
   const tokens =
     chainId && currencies
       ? currencies.map((currency) => {
-          return currency?.wrapped
-        })
+        return currency?.wrapped
+      })
       : []
 
   const unsupportedTokens: { [address: string]: Token } = useUnsupportedTokens()
@@ -71,7 +71,7 @@ export default function UnsupportedCurrencyFooter({
                 token &&
                 unsupportedTokens &&
                 Object.keys(unsupportedTokens).includes(token.address) && (
-                  <div className="border border-dark-700" key={token.address?.concat('not-supported')}>
+                  <div className="border" key={token.address?.concat('not-supported')}>
                     <AutoColumn gap="10px">
                       <AutoRow gap="5px" align="center">
                         <CurrencyLogo currency={token} size={'24px'} />

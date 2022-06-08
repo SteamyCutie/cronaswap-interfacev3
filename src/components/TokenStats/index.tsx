@@ -36,10 +36,12 @@ const TokenStatusInner = ({ token, price }) => {
           width="24px"
           height="24px"
           objectFit="contain"
-          className="rounded-md"
+          className="rounded-full"
         />
       )}
-      <div className="px-1">{formatNumberScale(price, true)}</div>
+      <div className="pl-2 pr-1 font-extrabold transition-all text-gray-800/80 dark:text-gray-50/80">
+        {formatNumberScale(price, true)}
+      </div>
     </div>
   )
 }

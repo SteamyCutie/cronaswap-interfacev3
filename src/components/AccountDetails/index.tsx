@@ -1,7 +1,7 @@
 import React, { FC, useCallback } from 'react'
-import { SUPPORTED_WALLETS, injected } from '../../configs/wallets'
+import { SUPPORTED_WALLETS, injected } from 'app/configs/wallets'
 
-import { AppDispatch } from '../../states'
+import { AppDispatch } from 'app/states'
 import Button from '../Button'
 import Copy from './Copy'
 import ExternalLink from '../ExternalLink'
@@ -10,11 +10,11 @@ import { ExternalLink as LinkIcon } from 'react-feather'
 import ModalHeader from '../ModalHeader'
 import Transaction from './Transaction'
 import Typography from '../Typography'
-import { clearAllTransactions } from '../../states/transactions/actions'
-import { getExplorerLink } from '../../functions/explorer'
-import { shortenAddress } from '../../functions'
+import { clearAllTransactions } from 'app/states/transactions/actions'
+import { getExplorerLink } from 'app/functions/explorer'
+import { shortenAddress } from 'app/functions'
 import { t } from '@lingui/macro'
-import { useActiveWeb3React } from '../../services/web3'
+import { useActiveWeb3React } from 'app/services/web3'
 import { useDispatch } from 'react-redux'
 import { useLingui } from '@lingui/react'
 
@@ -66,9 +66,9 @@ const AccountDetails: FC<AccountDetailsProps> = ({
       )
       .map((k) => SUPPORTED_WALLETS[k].name)[0]
     return (
-      <div className="flex flex-row items-center gap-5 font-medium text-baseline text-secondary">
+      <div className="flex flex-row items-center gap-5 font-bold dark:font-normal text-base text-gray-800 dark:text-gray-50">
         <div>Connected with {name}</div>
-        {getStatusIcon(32)}
+        {getStatusIcon(24)}
       </div>
     )
   }
@@ -149,21 +149,21 @@ const AccountDetails: FC<AccountDetailsProps> = ({
           </div>
           <div id="web3-account-identifier-row" className="flex flex-col justify-center space-y-3">
             {ENSName ? (
-              <div className="bg-dark-800">
+              <div className="bg-gray-50 dark:bg-gray-800 transition-all">
                 {/* {getStatusIcon()} */}
                 <Typography>{ENSName}</Typography>
               </div>
             ) : (
-              <div className="px-3 py-2 rounded bg-dark-800">
+              <div className="px-5 py-3 rounded-md bg-gray-50 dark:bg-gray-800 transition-all font-extrabold">
                 {/* {getStatusIcon()} */}
-                <Typography>{account && shortenAddress(account)}</Typography>
+                <Typography weight={700}>{account && shortenAddress(account)}</Typography>
               </div>
             )}
             <div className="flex items-center gap-2 space-x-3">
               {chainId && account && (
                 <ExternalLink
                   color="blue"
-                  startIcon={<LinkIcon size={16} />}
+                  // startIcon={<LinkIcon size={16} />}
                   href={chainId && getExplorerLink(chainId, ENSName || account, 'address')}
                 >
                   <Typography variant="sm">{i18n._(t`View on explorer`)}</Typography>
@@ -193,7 +193,7 @@ const AccountDetails: FC<AccountDetailsProps> = ({
             {renderTransactions(confirmedTransactions)}
           </>
         ) : (
-          <Typography variant="sm" className="text-secondary">
+          <Typography variant="sm" className="text-gray-800/50 dark:text-gray-50/50 transition-all">
             {i18n._(t`Your transactions will appear here...`)}
           </Typography>
         )}

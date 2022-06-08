@@ -235,9 +235,9 @@ export default function WalletModal({
                   return (
                     <button
                       key={i}
-                      className="w-full col-span-1 p-px rounded-2.5xl bg-gradient-to-r from-blue-special to-pink-special"
+                      className="w-full col-span-1 p-px rounded-2.5xl bg-gradient-to-r from-blue to-pink"
                     >
-                      <div className="flex items-center w-full h-full px-3 py-2 space-x-3 rounded-2.5xl bg-gray-100/90 dark:bg-gray-850/90 transition-all">
+                      <div className="flex items-center w-full h-full px-3 py-2 space-x-3 rounded-2.5xl bg-gray-50/90 dark:bg-gray-800/90 transition-all">
                         <Image
                           src={NETWORK_ICON[key]}
                           alt={`Switch to ${NETWORK_LABEL[key]} Network`}
@@ -245,7 +245,7 @@ export default function WalletModal({
                           width="32px"
                           height="32px"
                         />
-                        <div className="text-base font-extrabold text-primary">{NETWORK_LABEL[key]}</div>
+                        <div className="font-extrabold text-gray-800 dark:text-gray-50 transition-all text-base">{NETWORK_LABEL[key]}</div>
                       </div>
                     </button>
                   )
@@ -272,7 +272,7 @@ export default function WalletModal({
                         console.log('Failed to switch to the network')
                       }
                     }}
-                    className="flex items-center w-full col-span-1 px-3 py-2 space-x-3 rounded-2.5xl cursor-pointer border border-gray-800/10 dark:border-white/10 bg-gray-100 dark:bg-gray-850 hover:bg-gray-100/80 dark:hover:bg-gray-850/80 transition-all"
+                    className="flex items-center w-full col-span-1 px-3 py-2 space-x-3 rounded-2.5xl cursor-pointer border border-gray-800/10 dark:border-white/10 bg-gray-50 dark:bg-gray-800 hover:opacity-80 dark:hover:opacity-80 transition-all"
                   >
                     <Image
                       src={NETWORK_ICON[key]}
@@ -281,7 +281,7 @@ export default function WalletModal({
                       width="32px"
                       height="32px"
                     />
-                    <div className="text-base font-extrabold text-primary">{NETWORK_LABEL[key]}</div>
+                    <div className="font-extrabold text-gray-800 dark:text-gray-50 transition-all text-base">{NETWORK_LABEL[key]}</div>
                   </button>
                 )
               })}
@@ -297,7 +297,7 @@ export default function WalletModal({
               width="32px"
               height="32px"
             />
-            <div className="font-bold text-primary">{network} (Coming Soon)</div>
+            <div className="font-bold text-gray-800 dark:text-gray-50 transition-all">{network} (Coming Soon)</div>
           </button>
         ))} */}
             </div>
@@ -332,11 +332,11 @@ export default function WalletModal({
               tryActivation={tryActivation}
             />
           ) : (
-            <div className="flex flex-col space-y-5 overflow-y-auto">{getOptions()}</div>
+            <div className="flex flex-col space-y-3 overflow-y-auto">{getOptions()}</div>
           )}
           {walletView !== WALLET_VIEWS.PENDING && (
-            <div className="flex flex-col text-base text-center">
-              <div className="text-secondary">{i18n._(t`New to Ethereum?`)}</div>
+            <div className="flex flex-col text-center text-base">
+              <div className="text-gray-800/80 dark:text-gray-50/50 transition-all">{i18n._(t`New to Ethereum?`)}</div>
               <ExternalLink href="https://ethereum.org/wallets/" color="blue-special">
                 {i18n._(t`Learn more about wallets`)}
               </ExternalLink>

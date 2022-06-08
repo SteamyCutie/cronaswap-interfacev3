@@ -28,12 +28,12 @@ export default function Option({
     <div
       onClick={onClick}
       className={`flex items-center justify-between w-full px-5 py-3 rounded-2.5xl cursor-pointer transition-all ${!active
-        ? 'bg-gray-100/70 hover:bg-gray-100 dark:bg-gray-850/70 dark:hover:bg-gray-850'
-        : 'bg-gray-100/60 hover:bg-gray-100/90 dark:bg-gray-850/60 dark:hover:bg-gray-850/90'
+        ? 'bg-gray-50 opacity-70 hover:opacity-90 dark:bg-gray-800'
+        : 'bg-gray-50 opacity-90 hover:opacity-100 dark:bg-gray-800'
         }`}
     >
       <div>
-        <div className="flex items-center">
+        <div className="flex items-center text-base font-bold dark:font-normal">
           {active && <div className="w-4 h-4 mr-4 rounded-full" style={{ background: color }} />}
           {header}
         </div>
@@ -49,6 +49,6 @@ export default function Option({
   return !active ? (
     content
   ) : (
-    <div className="w-full p-px rounded-2.5xl bg-gradient-to-r from-blue-special to-pink-special">{content}</div>
+    <div className="w-full p-px rounded-2.5xl bg-gradient-to-r from-blue to-pink">{content}</div>
   )
 }

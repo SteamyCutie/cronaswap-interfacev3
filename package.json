@@ -199,6 +199,8 @@
     "@visx/curve": "^2.1.0",
     "@visx/group": "^2.1.0",
     "cids": "^1.1.9",
+    "echarts": "^5.3.2",
+    "echarts-for-react": "^3.0.2",
     "multicodec": "^3.2.1",
     "multihashes": "^4.0.3",
     "react-gauge-chart": "^0.4.0",

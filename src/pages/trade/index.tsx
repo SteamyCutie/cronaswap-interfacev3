@@ -60,6 +60,7 @@ import { warningSeverity } from 'app/functions/prices'
 import Image from 'next/image'
 import Banner from 'app/components/Banner'
 import { SwitchVerticalIcon } from '@heroicons/react/solid'
+import TradeChart from 'app/components/TradeChart'
 
 
 const Trade = () => {
@@ -394,7 +395,7 @@ const Trade = () => {
   const [animateSwapArrows, setAnimateSwapArrows] = useState<boolean>(false)
 
   return (
-    <Container id="swap-page" className="p-4 md:py-8 lg:py-24" maxWidth="7xl">
+    <Container id="swap-page" className="p-4 md:py-8 lg:py-24" maxWidth="8xl">
       <Head>
         <title>{i18n._(t`Trade`)} | Cronaswap</title>
         <meta
@@ -410,7 +411,7 @@ const Trade = () => {
       />
       <div className="flex gap-4">
         <div className="grid gap-4">
-          <div className="flex p-4 font-bold transition-all bg-gray-100 border shadow-md min-w-8 rounded-2xl text-gray-850 dark:text-gray-50 dark:font-normal border-gray-50/50 dark:border-gray-800 dark:bg-gray-850">
+          <div className="flex p-4 font-bold transition-all bg-gray-100 border w-96 h-96 rounded-2xl text-gray-850 dark:text-gray-50 dark:font-normal border-gray-50/50 dark:border-gray-800 dark:bg-gray-850">
             My wallet
           </div>
         </div>
@@ -689,8 +690,8 @@ const Trade = () => {
           <Banner />
         </DoubleGlowShadow>
         <div className="grid gap-4">
-          <div className="flex p-4 font-bold transition-all bg-gray-100 border shadow-md min-w-8 rounded-2xl text-gray-850 dark:text-gray-50 dark:font-normal border-gray-50/50 dark:border-gray-800 dark:bg-gray-850">
-            Chart
+          <div className="flex p-4 font-bold transition-all bg-gray-100 border w-96 h-96 rounded-2xl text-gray-850 dark:text-gray-50 dark:font-normal border-gray-50/50 dark:border-gray-800 dark:bg-gray-850">
+            <TradeChart />
           </div>
         </div>
       </div>

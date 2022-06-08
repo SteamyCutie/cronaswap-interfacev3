@@ -1,17 +1,17 @@
-import { Currency, Token } from '@cronaswap/core-sdk'
+import { AutoRow, RowBetween } from '../../components/Row'
+import { Currency, Token } from '@evmoswap/core-sdk'
 import React, { useState } from 'react'
 
-import { AutoRow, RowBetween } from 'app/components/Row'
-import { AutoColumn } from 'app/components/Column'
-import Button from 'app/components/Button'
-import CloseIcon from 'app/components/CloseIcon'
-import { CurrencyLogo } from 'app/components/CurrencyLogo'
-import ExternalLink from 'app/components/ExternalLink'
-import Modal from 'app/components/Modal'
-import { getExplorerLink } from 'app/functions/explorer'
-import { useActiveWeb3React } from 'app/services/web3'
-import { useUnsupportedTokens } from 'app/hooks/Tokens'
+import { AutoColumn } from '../../components/Column'
+import Button from '../../components/Button'
+import CloseIcon from '../../components/CloseIcon'
+import { CurrencyLogo } from '../../components/CurrencyLogo'
+import ExternalLink from '../../components/ExternalLink'
+import Modal from '../../components/Modal'
+import { getExplorerLink } from '../../functions/explorer'
 import styled from 'styled-components'
+import { useActiveWeb3React } from '../../services/web3'
+import { useUnsupportedTokens } from '../../hooks/Tokens'
 
 const DetailsFooter = styled.div<{ show: boolean }>`
   padding-top: calc(16px + 2rem);
@@ -50,8 +50,8 @@ export default function UnsupportedCurrencyFooter({
   const tokens =
     chainId && currencies
       ? currencies.map((currency) => {
-        return currency?.wrapped
-      })
+          return currency?.wrapped
+        })
       : []
 
   const unsupportedTokens: { [address: string]: Token } = useUnsupportedTokens()

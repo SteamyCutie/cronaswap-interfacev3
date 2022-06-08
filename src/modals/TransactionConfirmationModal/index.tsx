@@ -36,9 +36,9 @@ export const ConfirmationPendingContent: FC<ConfirmationPendingContentProps> = (
         <Lottie animationData={loadingRollingCircleDark} className="hidden dark:flex" autoplay loop />
       </div>
       <div className="flex flex-col items-center justify-center gap-3">
-        <div className="text-lg font-extrabold text-primary">{i18n._(t`Waiting for Confirmation`)}</div>
+        <div className="text-lg font-extrabold text-gray-800 dark:text-gray-50 transition-all">{i18n._(t`Waiting for Confirmation`)}</div>
         <div className="font-bold">{pendingText}</div>
-        <div className="text-sm font-bold text-secondary">{i18n._(t`Confirm this transaction in your wallet`)}</div>
+        <div className="text-sm font-bold text-gray-800/80 dark:text-gray-50/50 transition-all">{i18n._(t`Confirm this transaction in your wallet`)}</div>
       </div>
     </div>
   )
@@ -78,13 +78,13 @@ export const TransactionSubmittedContent: FC<TransactionSubmittedContentProps> =
         <div className="text-lg font-bold">{i18n._(t`Transaction Submitted`)}</div>
         {chainId && hash && (
           <ExternalLink href={getExplorerLink(chainId, hash, 'transaction')}>
-            <div className="text-base font-bold text-blue-special">View on explorer</div>
+            <div className="font-bold text-base text-blue-special">View on explorer</div>
           </ExternalLink>
         )}
         {currencyToAdd && library?.provider?.isMetaMask && (
           <Button color="gradient" onClick={addToken} className="w-auto px-8 mt-4 font-extrabold">
             {!success ? (
-              <RowFixed className="items-center mx-auto space-x-2 text-sm">
+              <RowFixed className="mx-auto space-x-2 items-center text-sm">
                 <span>{i18n._(t`Add ${currencyToAdd.symbol} to MetaMask`)}</span>
                 <Image
                   src="/images/wallets/metamask.png"
@@ -144,7 +144,7 @@ export const TransactionErrorContent: FC<TransactionErrorContentProps> = ({ mess
     <div className="grid gap-6">
       <div>
         <div className="flex justify-between">
-          <div className="text-base font-extrabold text-primary">{i18n._(t`Error`)}</div>
+          <div className="text-base font-extrabold text-gray-800 dark:text-gray-50">{i18n._(t`Error`)}</div>
           <CloseIcon onClick={onDismiss} />
         </div>
         <div className="flex flex-col items-center justify-center gap-3">

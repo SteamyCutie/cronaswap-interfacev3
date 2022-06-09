@@ -191,7 +191,7 @@ export function CurrencySearch({
             ref={inputRef as RefObject<HTMLInputElement>}
             onChange={handleInput}
             onKeyDown={handleEnter}
-            className="w-full transition-all bg-transparent border border-gray-100 dark:border-gray-800 focus:border-transparent focus:border-gradient-r-blue-pink-special-white dark:focus:border-transparent dark:focus:border-gradient-r-blue-pink-special-gray-800 rounded placeholder-gray-800/90 focus:placeholder-gray-800 dark:placeholder-white/90 dark:focus:placeholder-white font-bold text-base px-6 py-3.5"
+            className="w-full transition-all bg-transparent border border-gray-50 dark:border-gray-800 focus:border-transparent focus:border-gradient-r-blue-pink-white dark:focus:border-transparent dark:focus:border-gradient-r-blue-pink-gray-800 rounded placeholder-gray-800/90 focus:placeholder-gray-800 dark:placeholder-white/90 dark:focus:placeholder-white font-bold text-base px-6 py-3.5"
           />
         </div>
       )}
@@ -206,7 +206,7 @@ export function CurrencySearch({
           <ImportRow token={searchToken} showImportView={showImportView} setImportToken={setImportToken} />
         </Column>
       ) : filteredSortedTokens?.length > 0 || filteredInactiveTokens?.length > 0 ? (
-        <div className="h-screen p-2 transition-all border-2 border-gray-100 dark:border-gray-800 rounded-2xl">
+        <div className="h-screen p-2 transition-all border-2 border-gray-50 dark:border-gray-800 rounded-2xl">
           <AutoSizer disableWidth>
             {({ height }) => (
               <CurrencyList

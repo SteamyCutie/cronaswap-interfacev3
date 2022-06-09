@@ -23,7 +23,7 @@ export default function Toggle({ id, isActive, toggle }: ToggleProps) {
         className={classNames(
           'pointer-events-none relative h-[21px] w-[33px] flex text-sm items-center justify-center rounded-md transform ring-0 transition ease-in-out duration-200',
           isActive
-            ? 'bg-blue-special dark:bg-blue-special text-white dark:text-white translate-x-[33px]'
+            ? 'bg-blue dark:bg-blue text-white dark:text-white translate-x-[33px]'
             : 'translate-x-0 text-gray-800 dark:text-white bg-white dark:bg-gray-800 '
         )}
       >

@@ -1,4 +1,4 @@
-import { ChainId, Currency, CurrencyAmount, JSBI, Token, TradeType, Trade as V2Trade } from '@cronaswap/core-sdk'
+import { ChainId, Currency, CurrencyAmount, NATIVE, JSBI, Token, TradeType, Trade as V2Trade } from '@cronaswap/core-sdk'
 import { ApprovalState, useApproveCallbackFromTrade } from 'app/hooks/useApproveCallback'
 import { BottomGrouping, SwapCallbackError } from 'app/features/trade/styleds'
 import { ButtonConfirmed, ButtonError } from 'app/components/Button'
@@ -56,6 +56,7 @@ import { useRouter } from 'next/router'
 import { useSwapCallback } from 'app/hooks/useSwapCallback'
 import { useUSDCValue } from 'app/hooks/useUSDCPrice'
 import { warningSeverity } from 'app/functions/prices'
+import { useETHBalances } from 'app/states/wallet/hooks'
 
 import Image from 'next/image'
 import Banner from 'app/components/Banner'
@@ -83,6 +84,7 @@ const Trade = () => {
     setDismissTokenWarning(true)
   }, [])
 
+
   // dismiss warning if all imported tokens are in active lists
   const defaultTokens = useAllTokens()
   const importTokensNotInDefault =
@@ -92,6 +94,7 @@ const Trade = () => {
     })
 
   const { account, chainId } = useActiveWeb3React()
+  const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? '']
 
   const toggleNetworkModal = useNetworkModalToggle()
 
@@ -410,9 +413,38 @@ const Trade = () => {
         onConfirm={handleConfirmTokenWarning}
       />
       <div className="flex gap-4">
-        <div className="grid gap-4">
-          <div className="flex p-4 font-bold transition-all bg-gray-100 border w-96 h-96 rounded-2xl text-gray-850 dark:text-gray-50 dark:font-normal border-gray-50/50 dark:border-gray-800 dark:bg-gray-850">
-            My wallet
+        <div className="gap-4">
+          <div className='grid p-4 font-bold transition-all bg-gray-100 border w-96 rounded-2xl text-gray-850 dark:text-gray-50 dark:font-normal border-gray-50/50 dark:border-gray-800 dark:bg-gray-850'>
+            <div className="flex items-center justify-between py-4 px-4">
+              <div className='flex items-center'>
+                My wallet
+              </div>
+              <div className='flex items-center text-lg gap-1.5'>
+                <div className="flex font-extrabold">
+                  {account && chainId && userEthBalance ? userEthBalance?.toSignificant(4) : '-'}
+                </div>
+                <div className="flex font-normal">
+                  {NATIVE[chainId].symbol}
+                </div>
+              </div>
+            </div>
+            {!account && (
+              <div className='pt-4 border-t border-gray-850/50 dark:border-gray-100/30 transition-all'>
+                <Web3Connect size='lg' />
+              </div>
+            )}
+          </div>
+          <div className="flex mt-4 items-center p-4 font-bold transition-all bg-gray-100 border w-96 rounded-2xl text-gray-850 dark:text-gray-50 dark:font-normal border-gray-50/50 dark:border-gray-800 dark:bg-gray-850">
+            <div className='grid'>
+              <div className="flex items-center justify-between py-4 px-4">
+                Trending Pairs
+              </div>
+              <div className='flex flex-wrap pt-4 border-t border-gray-850/50 dark:border-gray-100/30 transition-all gap-2'>
+                <Button className='bg-gray-850/20 dark:bg-gray-100/10 shadow text-xs' size='sm'>USDC / CRONA</Button>
+                <Button className='bg-gray-850/20 dark:bg-gray-100/10 shadow text-xs' size='sm'>USDT / CRONA</Button>
+                <Button className='bg-gray-850/20 dark:bg-gray-100/10 shadow text-xs' size='sm'>USDC / USDT</Button>
+              </div>
+            </div>
           </div>
         </div>
         <DoubleGlowShadow>

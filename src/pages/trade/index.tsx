@@ -723,7 +723,7 @@ const Trade = () => {
         </DoubleGlowShadow>
         <div className="grid gap-4">
           <div className="flex p-4 font-bold transition-all bg-gray-100 border w-96 h-96 rounded-2xl text-gray-850 dark:text-gray-50 dark:font-normal border-gray-50/50 dark:border-gray-800 dark:bg-gray-850">
-            <TradeChart />
+            <TradeChart currencies={[currencies.INPUT, currencies.OUTPUT]} />
           </div>
         </div>
       </div>

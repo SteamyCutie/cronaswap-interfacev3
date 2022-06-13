@@ -98,7 +98,7 @@ const Invest = () => {
             <div onClick={() => setPoolGroup(1)} className={classNames(poolGroupStyle, poolGroup === 1 ? poolGroupActive : poolGroupPassive)}>Community Pools</div>
             <div onClick={() => setPoolGroup(2)} className={classNames(poolGroupStyle, poolGroup === 2 ? poolGroupActive : poolGroupPassive)}>My Investments</div>
           </div>
-          <InvestList />
+          <InvestList filter={true} />
         </div>
       </div>
     </Container>

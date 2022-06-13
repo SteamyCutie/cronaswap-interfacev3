@@ -12,7 +12,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import FarmListItem from "./FarmListItem"
 
 
-const InvestList = () => {
+const InvestList = ({ filter }) => {
   const { i18n } = useLingui()
 
   const router = useRouter()
@@ -55,13 +55,17 @@ const InvestList = () => {
   return (
     <div className="w-full col-span-4 mt-4 space-y-3 lg:col-span-3">
       {/* search bar */}
-      <div className="grid gap-2 lg:justify-between lg:flex">
-        <div className='grid items-center justify-between grid-cols-2 gap-2 md:grid-cols-4 lg:justify-center'>
-          <div onClick={() => setActiveFilter(0)} className={classNames(filterStyle, activeFilter === 0 ? 'bg-blue text-gray-50 dark:bg-blue dark:text-gray-50' : 'bg-gray-100 dark:bg-gray-850 text-gray-850 dark:text-gray-50')}>Index Fund Pools</div>
-          <div onClick={() => setActiveFilter(1)} className={classNames(filterStyle, activeFilter === 1 ? 'bg-blue text-gray-50 dark:bg-blue dark:text-gray-50' : 'bg-gray-100 dark:bg-gray-850 text-gray-850 dark:text-gray-50')}>Stablecoin Pools</div>
-          <div onClick={() => setActiveFilter(2)} className={classNames(filterStyle, activeFilter === 2 ? 'bg-blue text-gray-50 dark:bg-blue dark:text-gray-50' : 'bg-gray-100 dark:bg-gray-850 text-gray-850 dark:text-gray-50')}>CRONA Pools</div>
-          <div onClick={() => setActiveFilter(3)} className={classNames(filterStyle, activeFilter === 3 ? 'bg-blue text-gray-50 dark:bg-blue dark:text-gray-50' : 'bg-gray-100 dark:bg-gray-850 text-gray-850 dark:text-gray-50')}>Boosted Pools</div>
-        </div>
+      <div className={`grid gap-2 ${filter ? 'lg:justify-between' : 'lg:justify-end'} lg:flex`}>
+        {filter &&
+          (
+            <div className='grid items-center justify-between grid-cols-2 gap-2 md:grid-cols-4 lg:justify-center'>
+              <div onClick={() => setActiveFilter(0)} className={classNames(filterStyle, activeFilter === 0 ? 'bg-blue text-gray-50 dark:bg-blue dark:text-gray-50' : 'bg-gray-100 dark:bg-gray-850 text-gray-850 dark:text-gray-50')}>Index Fund Pools</div>
+              <div onClick={() => setActiveFilter(1)} className={classNames(filterStyle, activeFilter === 1 ? 'bg-blue text-gray-50 dark:bg-blue dark:text-gray-50' : 'bg-gray-100 dark:bg-gray-850 text-gray-850 dark:text-gray-50')}>Stablecoin Pools</div>
+              <div onClick={() => setActiveFilter(2)} className={classNames(filterStyle, activeFilter === 2 ? 'bg-blue text-gray-50 dark:bg-blue dark:text-gray-50' : 'bg-gray-100 dark:bg-gray-850 text-gray-850 dark:text-gray-50')}>CRONA Pools</div>
+              <div onClick={() => setActiveFilter(3)} className={classNames(filterStyle, activeFilter === 3 ? 'bg-blue text-gray-50 dark:bg-blue dark:text-gray-50' : 'bg-gray-100 dark:bg-gray-850 text-gray-850 dark:text-gray-50')}>Boosted Pools</div>
+            </div>
+          )
+        }
 
         <div className="flex gap-2 lg:w-3/12">
           <Search
